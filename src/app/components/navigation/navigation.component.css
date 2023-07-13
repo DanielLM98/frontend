@@ -1,0 +1,16 @@
+mat-toolbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 64px;
+ 
+}
+a span{
+    margin-left: 24px;
+}
+mat-toolbar a{
+    text-decoration: none;
+}
+
+mat-toolbar a.active-link{
+    color:white
+}

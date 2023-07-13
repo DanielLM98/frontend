@@ -1,0 +1,41 @@
+<div class="card shadow-lg o-hidden border-0 my-5">
+    <div class="card-body p-0">
+        <div class="row">
+            <div class="col-lg-5 d-none d-lg-flex">
+                <div class="flex-grow-1 bg-register-image" style="background-image: url('https://www.aeaweb.org/content/file?id=13713');
+                      filter: blur(1px);">
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="p-5">
+                    <div class="text-center">
+                        <h4 class="text-dark mb-4">Create an Account!</h4>
+                    </div>
+                    <form [formGroup]="signupForm" (ngSubmit)="signup()" novalidate>
+                        <mat-form-field>
+                            <mat-label>First name</mat-label>
+                            <input matInput placeholder="Daniel" formControlName="nombre">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Last Name</mat-label>
+                            <input matInput placeholder="Daniel" formControlName="apellido">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="Daniel" formControlName="correoElectronico">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Password</mat-label>
+                            <input matInput type="password" placeholder="Daniel" formControlName="contrasena">
+                        </mat-form-field>
+                        <button color="accent" [disabled]="!signupForm.valid" mat-raised-button
+                            type="submit"><span>SignUp</span></button>
+                    </form>
+                    <div class="text-center "><a class="small " href="forgot-password.html ">Forgot Password?</a></div>
+                    <div class="text-center "><a class="small " href="login.html ">Already have an account? Login!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
