@@ -1,40 +1,42 @@
-<div class="card shadow-lg o-hidden border-0 my-5">
-    <div class="card-body p-0">
-        <div class="row">
-            <div class="col-lg-5 d-none d-lg-flex">
-                <div class="flex-grow-1 bg-register-image" style="background-image: url('https://www.aeaweb.org/content/file?id=13713');
+<div class="container">
+    <div class="card shadow-lg o-hidden border-0 my-5">
+        <div class="card-body p-0">
+            <div class="row">
+                <div class="col-lg-5 d-none d-lg-flex">
+                    <div class="flex-grow-1 bg-register-image" style="background-image: url('https://www.aeaweb.org/content/file?id=13713');
                         filter: blur(1px);">
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-7">
-                <div class="p-5">
-                    <div class="text-center">
-                        <h4 class="text-dark mb-4">Welcome Back!</h4>
-                    </div>
-                    <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
-                        <mat-form-field>
-                            <mat-label>Email</mat-label>
-                            <input matInput placeholder="Correo Electronico" formControlName="correoElectronico">
-                        </mat-form-field>
-                        <mat-form-field>
-                            <mat-label>Password</mat-label>
-                            <input matInput type="password" placeholder="Enter your password"
-                                formControlName="contrasena" required>
-                        </mat-form-field>
-                        <div class="mb-3">
-                            <div class="custom-control custom-checkbox small">
-                                <div class="form-check"><input class="form-check-input custom-control-input"
-                                        type="checkbox" id="formCheck-1"><label
-                                        class="form-check-label custom-control-label" for="formCheck-1">Remember
-                                        Me</label></div>
-                            </div>
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h4 class="text-dark mb-4">Welcome Back!</h4>
                         </div>
-                        <button color="accent" class="w-100" [disabled]="!loginForm.valid" mat-raised-button
-                            type="submit"><span>Login</span></button>
-                    </form>
-                    <div class="text-center"><a class="small" href="forgot-password.html">Forgot Password?</a>
+                        <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+                            <mat-form-field>
+                                <mat-label>Email</mat-label>
+                                <input matInput placeholder="Correo Electronico" formControlName="correoElectronico">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Password</mat-label>
+                                <input matInput type="password" placeholder="Enter your password"
+                                    formControlName="contrasena" required>
+                            </mat-form-field>
+                            <div class="mb-3">
+                                <div class="custom-control custom-checkbox small">
+                                    <div class="form-check"><input class="form-check-input custom-control-input"
+                                            type="checkbox" id="formCheck-1"><label
+                                            class="form-check-label custom-control-label" for="formCheck-1">Remember
+                                            Me</label></div>
+                                </div>
+                            </div>
+                            <button color="accent" class="w-100" [disabled]="!loginForm.valid" mat-raised-button
+                                type="submit"><span>Login</span></button>
+                        </form>
+                        <div class="text-center"><a class="small" href="forgot-password.html">Forgot Password?</a>
+                        </div>
+                        <div class="text-center"><a class="small" href="/register.html">Create an Account!</a></div>
                     </div>
-                    <div class="text-center"><a class="small" href="/register.html">Create an Account!</a></div>
                 </div>
             </div>
         </div>

@@ -35,7 +35,7 @@ import { NavsuperiorComponent } from './components/navsuperior/navsuperior.compo
     UsuariosComponent,
     CentrosComponent,
     FormCentrosComponent,
-    NavsuperiorComponent
+    NavsuperiorComponent,
   ],
   imports: [
     BrowserModule,
