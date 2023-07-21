@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Centro } from 'src/app/models/Centro';
+import { CentrosService } from 'src/app/services/centros.service';
 
 @Component({
   selector: 'app-form-centros',
@@ -7,9 +9,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./form-centros.component.css']
 })
 export class FormCentrosComponent implements OnInit {
+  @ViewChild("formDirective") formDirective!: NgForm;
+  @Output() create: EventEmitter<any> = new EventEmitter();
   centrosForm!: FormGroup;
 
-  constructor() { }
+  constructor(private centrosService:CentrosService) { }
 
 
   ngOnInit(): void {
@@ -26,7 +30,8 @@ export class FormCentrosComponent implements OnInit {
     });
   }
 
-  crearCentro(): void {
+  onSubmit(): void {
+    this.centrosService.create(this.centrosForm.value).subscribe((msg) => console.log(msg));
   }
 }
 

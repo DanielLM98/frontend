@@ -6,8 +6,8 @@
                 <mat-card-header>
                     <mat-card-title>Centros</mat-card-title>
                 </mat-card-header>
-                <div class="card-body">
-                    <form [formGroup]="centrosForm" (ngSubmit)="crearCentro()" novalidate>
+                <div class="card-body mx-3 mb-3">
+                    <form [formGroup]="centrosForm" (ngSubmit)="onSubmit()" novalidate>
                         <div class="row">
                             <div class="col">
                                 <div class="mb-3">
