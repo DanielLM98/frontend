@@ -1,0 +1,55 @@
+<div class="container-fluid">
+    <h2 class="text-dark mb-4">Formulario de centros</h2>
+    <div class="row mb-3">
+        <div class="col-lg-12">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Centros</mat-card-title>
+                </mat-card-header>
+                <div class="card-body">
+                    <form [formGroup]="centrosForm" (ngSubmit)="crearCentro()" novalidate>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label">Nombre</label>
+                                    <input class="form-control" type="text" placeholder="Nombre"
+                                        formControlName="nombre">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label">Direccion</label>
+                                    <input class="form-control" type="text" placeholder="Direccion"
+                                        formControlName="direccion">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label">Correo Electronico</label>
+                                    <input class="form-control" type="email" placeholder="Correo Electronico"
+                                        formControlName="correoElectronico">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label">Telefono</label>
+                                    <input class="form-control" type="text" placeholder="Telefono"
+                                        formControlName="telefono">
+                                </div>
+                            </div>
+                        </div>
+                        <button color="primary" class="w-100" [disabled]="!centrosForm.valid" mat-raised-button
+                        type="submit"><span>Crear centro</span></button>
+                    </form>
+                </div>
+            </mat-card>
+
+        </div>
+    </div>
+</div>

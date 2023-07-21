@@ -19,6 +19,9 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { CentrosComponent } from './components/admin/centros/centros.component';
+import { FormCentrosComponent } from './components/admin/centros/form-centros/form-centros.component';
+import { NavsuperiorComponent } from './components/navsuperior/navsuperior.component';
 
 
 
@@ -29,7 +32,10 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
     LoginComponent,
     SignupComponent,
     HomeComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    CentrosComponent,
+    FormCentrosComponent,
+    NavsuperiorComponent
   ],
   imports: [
     BrowserModule,
