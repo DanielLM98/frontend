@@ -19,8 +19,10 @@ export class CentrosComponent implements OnInit{
 
   constructor(private centrosService: CentrosService, private authService: AuthService) { }
   ngOnInit(): void {
-    this.centros$ = this.centrosService.getAll();
+    this.centros$ = this.centrosService.fetchAll();
     this.userId = this.authService.userId;
+
+    console.log(this.centros$)
   }
 
   //Usar el fetchall de centrosService para obtener los centros

@@ -1,9 +1,6 @@
-<nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0"
-    style="background: rgb(75,148,84);">
-    <div class="container-fluid d-flex flex-column p-0"><a
-            class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0 my-3" href="#"><img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Emblema_de_la_Junta_de_Andaluc%C3%ADa_2020.svg/1200px-Emblema_de_la_Junta_de_Andaluc%C3%ADa_2020.svg.png"
-                width="65 em" height="65 em" />
+<nav *ngIf="isAutenticated" class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background: rgb(75,148,84);">
+    <div class="container-fluid d-flex flex-column p-0">
+        <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0 my-3" href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Emblema_de_la_Junta_de_Andaluc%C3%ADa_2020.svg/1200px-Emblema_de_la_Junta_de_Andaluc%C3%ADa_2020.svg.png" width="65 em" height="65 em" />
             <div class="sidebar-brand-icon rotate-n-15"></div>
         </a>
         <hr class="sidebar-divider my-0" />
@@ -19,7 +16,6 @@
             <li class="nav-item"><a class="nav-link" href="register.html"><i
                         class="fas fa-user-circle"></i><span>Register</span></a></li>
         </ul>
-        <div class="text-center d-none d-md-inline"><button id="sidebarToggle" class="btn rounded-circle border-0"
-                type="button"></button></div>
+        <div class="text-center d-none d-md-inline"><button id="sidebarToggle" class="btn rounded-circle border-0" type="button"></button></div>
     </div>
 </nav>

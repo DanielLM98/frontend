@@ -25,6 +25,7 @@ import { NavsuperiorComponent } from './components/navsuperior/navsuperior.compo
 
 
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -57,7 +58,9 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true,
-    }
+    },
+    AuthService
+
   ],
   bootstrap: [AppComponent]
 })

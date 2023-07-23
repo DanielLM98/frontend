@@ -31,6 +31,8 @@ export class FormCentrosComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log(this.centrosForm.value)
+
     this.centrosService.create(this.centrosForm.value).subscribe((msg) => console.log(msg));
   }
 }

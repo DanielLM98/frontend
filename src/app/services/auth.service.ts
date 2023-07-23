@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -12,15 +12,23 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+
+
+export class AuthService implements OnInit{
   private url = "http://localhost:3000/auth";
 
-  isUserLoggedIn = new BehaviorSubject<boolean>(false);
+  isUserLoggedIn$ = new BehaviorSubject<boolean>(false);
   userId!: Pick<User, "id">;
 
   private httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
   constructor(private http: HttpClient, private errorHandlerService: ErrorHandlerService, private router: Router) { }
+
+  ngOnInit(): void {
+    if (localStorage.getItem("token")) {
+      this.isUserLoggedIn$.next(true);
+    }
+  }
 
   signup(user: Omit<User, "id">): Observable<User> {
     user.estado = "Activo";
@@ -37,7 +45,6 @@ export class AuthService {
     token: string; userId: Pick<User, "id">
   }> {
 
-    console.log(correoElectronico, contrasena)
     return this.http
     .post(`${this.url}/login`, { correoElectronico, contrasena }, this.httpOptions)
     .pipe(
@@ -45,11 +52,10 @@ export class AuthService {
       tap((tokenObject: { token: string, userId: Pick<User, "id"> }) => { 
         this.userId = tokenObject.userId;
         localStorage.setItem("token", tokenObject.token);
-        this.isUserLoggedIn.next(true);
+        this.isUserLoggedIn$.next(true);
         this.router.navigate(["/"]);
       }),
       catchError(this.errorHandlerService.handleError<{ token: string, userId: Pick<User, "id"> }>("login"))
     );
-    console.log(correoElectronico)
   }
 }
