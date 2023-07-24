@@ -14,8 +14,10 @@ const routes: Routes = [
   { path: "signup", component: SignupComponent},
   { path: "usuarios", component: UsuariosComponent},
   { path: "admin/centros", component: CentrosComponent, canActivate: [AuthGuardService]},
+  { path: "admin/centros/:id/edit", component: FormCentrosComponent, canActivate: [AuthGuardService]},
   { path: "admin/centros/create", component: FormCentrosComponent, canActivate: [AuthGuardService]},
   { path: "**", redirectTo: ""}
+
   
 ];
 
