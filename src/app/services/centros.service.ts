@@ -20,16 +20,27 @@ export class CentrosService {
   
 
   fetchAll(): Observable<Centro[]> {
-    return this.http.get<Centro[]>(this.url, {responseType: 'json'}).pipe(
+    return this.http.get<Centro[]>(this.url).pipe(
       catchError(this.errorHandlerService.handleError<Centro[]>("getAll centros", []))
     );
   }
   create(centro: Omit<Centro, "id">): Observable<Centro> {
-   
-
-    return this.http.post<Centro>(`${this.url}/create`, centro, this.httpOptions).pipe(
+       return this.http.post<Centro>(`${this.url}/create`, centro, this.httpOptions).pipe(
       first(),
       catchError(this.errorHandlerService.handleError<Centro>("create centro"))
+    );
+  }
+
+  update(idcentro: number,centro: Centro): Observable<Centro> {
+    return this.http.put<Centro>(`${this.url}/update/${idcentro}`, centro, this.httpOptions).pipe(
+      first(),
+      catchError(this.errorHandlerService.handleError<Centro>("update centro"))
+    );
+  }
+
+  fetchById(id: number): Observable<Centro> {
+    return this.http.get<Centro>(`${this.url}/get/${id}`).pipe(
+      catchError(this.errorHandlerService.handleError<Centro>("getById centro"))
     );
   }
 }

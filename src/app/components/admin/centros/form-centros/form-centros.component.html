@@ -6,14 +6,14 @@
                 <mat-card-header>
                     <mat-card-title>Centros</mat-card-title>
                 </mat-card-header>
-                <div class="card-body mx-3 mb-3">
-                    <form [formGroup]="centrosForm" (ngSubmit)="onSubmit()" novalidate>
+                <div *ngIf="ExisteCentro; else create" class="card-body mx-3 mb-3">
+                    <form [formGroup]="centrosForm" (ngSubmit)="onUpdate()" novalidate>
                         <div class="row">
                             <div class="col">
                                 <div class="mb-3">
                                     <label class="form-label">Nombre</label>
-                                    <input class="form-control" type="text" placeholder="Nombre"
-                                        formControlName="nombre">
+                                    <input class="form-control" type="text" placeholder="{{Centro.Nombre}}"
+                                        formControlName="nombre" [(ngModel)]=Centro.Nombre>
                                 </div>
                             </div>
                         </div>
@@ -22,7 +22,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Direccion</label>
                                     <input class="form-control" type="text" placeholder="Direccion"
-                                        formControlName="direccion">
+                                        formControlName="direccion" [(ngModel)]=Centro.Direccion>
                                 </div>
                             </div>
                         </div>
@@ -31,7 +31,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Correo Electronico</label>
                                     <input class="form-control" type="email" placeholder="Correo Electronico"
-                                        formControlName="correoElectronico">
+                                        formControlName="correoElectronico" [(ngModel)]=Centro.CorreoElectronico>
                                 </div>
                             </div>
                         </div>
@@ -40,14 +40,59 @@
                                 <div class="mb-3">
                                     <label class="form-label">Telefono</label>
                                     <input class="form-control" type="text" placeholder="Telefono"
-                                        formControlName="telefono">
+                                        formControlName="telefono" [(ngModel)]=Centro.Telefono>
                                 </div>
                             </div>
                         </div>
                         <button color="primary" class="w-100" [disabled]="!centrosForm.valid" mat-raised-button
-                        type="submit"><span>Crear centro</span></button>
+                        type="submit"><span>Editar centro</span></button>
                     </form>
                 </div>
+
+                <ng-template #create>
+                    <div *ngIf="Centro == null" class="card-body mx-3 mb-3">
+                        <form [formGroup]="centrosForm" (ngSubmit)="onSubmit()" novalidate>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label">Nombre</label>
+                                        <input class="form-control" type="text" placeholder="Nombre"
+                                            formControlName="nombre">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label">Direccion</label>
+                                        <input class="form-control" type="text" placeholder="Direccion"
+                                            formControlName="direccion">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label">Correo Electronico</label>
+                                        <input class="form-control" type="email" placeholder="Correo Electronico"
+                                            formControlName="correoElectronico">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label">Telefono</label>
+                                        <input class="form-control" type="text" placeholder="Telefono"
+                                            formControlName="telefono">
+                                    </div>
+                                </div>
+                            </div>
+                            <button color="primary" class="w-100" [disabled]="!centrosForm.valid" mat-raised-button
+                            type="submit"><span>Crear centro</span></button>
+                        </form>
+                    </div>
+                </ng-template>
             </mat-card>
 
         </div>
