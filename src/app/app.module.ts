@@ -26,6 +26,7 @@ import { NavsuperiorComponent } from './components/navsuperior/navsuperior.compo
 
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { AuthService } from './services/auth.service';
+import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 
 
 
@@ -40,6 +41,7 @@ import { AuthService } from './services/auth.service';
     CentrosComponent,
     FormCentrosComponent,
     NavsuperiorComponent,
+    ForgotpasswordComponent,
   ],
   imports: [
     BrowserModule,

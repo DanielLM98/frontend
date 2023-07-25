@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  errorMessage!: string;
+  showPwd: boolean = false;
 
 
   constructor(private authService: AuthService) { }
@@ -28,6 +30,26 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     console.log(this.loginForm.value)
-    this.authService.login(this.loginForm.value.correoElectronico, this.loginForm.value.contrasena).subscribe();
+    this.authService.login(this.loginForm.value.correoElectronico, this.loginForm.value.contrasena).subscribe(
+      (data) => {
+        if(data==undefined){
+          this.errorMessage = "Correo o contraseña incorrectos";
+        }
+      }
+    );
+    console.log(this.errorMessage)
+
 }
+
+  showPassword():void {
+    let x = document.getElementById("contrasena") as HTMLInputElement;
+    if (x.type === "password") {
+      x.type = "text";
+      this.showPwd = true;
+    } else {
+      x.type = "password";
+      this.showPwd = false;
+    }
+
+  }
 }

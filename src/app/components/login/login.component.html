@@ -10,32 +10,39 @@
                 <div class="col-lg-7">
                     <div class="p-5">
                         <div class="text-center">
-                            <h4 class="text-dark mb-4">Welcome Back!</h4>
+                            <h4 class="text-dark mb-4">Bienvenido de nuevo</h4>
                         </div>
                         <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+                            <div *ngIf="loginForm.get('correoElectronico')?.invalid && loginForm.get('correoElectronico')?.touched">
+                                <mat-error *ngIf="loginForm.get('correoElectronico')?.hasError('required')">
+                                    El correo electronico es requerido
+                                </mat-error>
+                                <mat-error *ngIf="loginForm.get('correoElectronico')?.hasError('email')">
+                                    El correo electronico no es valido
+                                </mat-error>
+                                
+                            </div>
+                            <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
                             <mat-form-field>
-                                <mat-label>Email</mat-label>
+                                <mat-label>Correo Electronico</mat-label>
                                 <input matInput placeholder="Correo Electronico" formControlName="correoElectronico">
                             </mat-form-field>
                             <mat-form-field>
-                                <mat-label>Password</mat-label>
-                                <input matInput type="password" placeholder="Enter your password"
-                                    formControlName="contrasena" required>
+                                <mat-label>
+                                    Contraseña
+                                </mat-label>
+                                <input matInput id="contrasena" type="password" placeholder="Enter your password"
+                                    formControlName="contrasena" required><i
+                                    class="fa "
+                                    [ngClass]="{'fa-eye': !showPwd, 'fa-eye-slash': showPwd}" (click)="showPassword()"></i>
                             </mat-form-field>
-                            <div class="mb-3">
-                                <div class="custom-control custom-checkbox small">
-                                    <div class="form-check"><input class="form-check-input custom-control-input"
-                                            type="checkbox" id="formCheck-1"><label
-                                            class="form-check-label custom-control-label" for="formCheck-1">Remember
-                                            Me</label></div>
-                                </div>
-                            </div>
+                          
                             <button color="accent" class="w-100" [disabled]="!loginForm.valid" mat-raised-button
                                 type="submit"><span>Login</span></button>
                         </form>
-                        <div class="text-center"><a class="small" href="forgot-password.html">Forgot Password?</a>
+                        <div class="text-center"><a class="small" routerLink="/forgot-password">¿Olvidó su contraseña?</a>
                         </div>
-                        <div class="text-center"><a class="small" href="/register.html">Create an Account!</a></div>
+                        <div class="text-center"><a class="small" routerLink="/signup">¿Aún no tiene cuenta? Crear cuenta</a></div>
                     </div>
                 </div>
             </div>
