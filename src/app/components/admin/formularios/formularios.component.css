@@ -1,0 +1,12 @@
+#minmax{
+    display: none;
+}
+
+#selche{
+    display: none;
+}
+
+.btn-addinput{   background-color: green !important;
+    color: white !important;
+    position: absolute;
+right: 16px;}
