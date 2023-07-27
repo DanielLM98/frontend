@@ -8,6 +8,7 @@ import { ErrorHandlerService } from './error-handler.service';
   providedIn: 'root'
 })
 export class FormulariosService {
+ 
 
 
   private url = "http://localhost:3000/formularios";
@@ -20,7 +21,7 @@ export class FormulariosService {
       catchError(this.errorHandlerService.handleError<Formulario[]>("getAll Formularios", []))
     );
   }
-  create(Formulario: Omit<Formulario, "id">): Observable<Formulario> {
+  create(Formulario: FormData): Observable<Formulario> {
        return this.http.post<Formulario>(`${this.url}/create`, Formulario, this.httpOptions).pipe(
       first(),
       catchError(this.errorHandlerService.handleError<Formulario>("create Formulario"))
@@ -39,4 +40,12 @@ export class FormulariosService {
       catchError(this.errorHandlerService.handleError<Formulario>("getById Formulario"))
     );
   }
+
+  delete(id: number): Observable<Formulario> {
+    return this.http.delete<Formulario>(`${this.url}/delete/${id}`, this.httpOptions).pipe(
+      catchError(this.errorHandlerService.handleError<Formulario>("delete Formulario"))
+    );
+  }
+
+ 
 }

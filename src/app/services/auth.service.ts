@@ -19,6 +19,9 @@ export class AuthService implements OnInit{
 
   isUserLoggedIn$ = new BehaviorSubject<boolean>(false);
   userId!: Pick<User, "id">;
+  user$ =new BehaviorSubject<User>({} as User);
+  private _user: User | null = null; // Usuario logueado
+
 
   private httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
@@ -30,7 +33,11 @@ export class AuthService implements OnInit{
     }
   }
 
-  signup(user: Omit<User, "id">): Observable<User> {
+  getUsuario(): User | null {
+    console.log(this.user$);
+    return this._user;
+  }
+   signup(user: Omit<User, "id">): Observable<User> {
     user.estado = "Activo";
     user.tipoUsuario = "Usuario";
     console.log(user)
@@ -42,20 +49,24 @@ export class AuthService implements OnInit{
   }
 
   login(correoElectronico: Pick<User, "correoElectronico">, contrasena: Pick<User, "contrasena">): Observable<{
-    token: string; userId: Pick<User, "id">
+    token: string; userSession: User; userId: number
   }> {
 
     return this.http
     .post(`${this.url}/login`, { correoElectronico, contrasena }, this.httpOptions)
     .pipe(
       first<any>(),
-      tap((tokenObject: { token: string, userId: Pick<User, "id"> }) => { 
-        this.userId = tokenObject.userId;
+      tap((tokenObject: { token: string, userSession: User, userId: number }) => { 
+        this._user = tokenObject.userSession;
+        this._user.id = tokenObject.userId;
+        this.user$.next(this._user);
+
         localStorage.setItem("token", tokenObject.token);
         this.isUserLoggedIn$.next(true);
+        console.log(this.user$)
         this.router.navigate(["/"]);
       }),
-      catchError(this.errorHandlerService.handleError<{ token: string, userId: Pick<User, "id"> }>("login"))
+      catchError(this.errorHandlerService.handleError<{ token: string, userSession: User, userId: number }>("login"))
     );
   }
 }

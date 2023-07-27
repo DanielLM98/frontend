@@ -1,7 +1,7 @@
 export interface Empresa { 
-    id: number;
-    nombre: string;
-    direccion: string;
-    correoElectronico: string;
-    telefono: string;
+    ID: number;
+    Nombre: string;
+    Direccion: string;
+    CorreoElectronico: string;
+    Telefono: string;
 }

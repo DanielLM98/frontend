@@ -1,1 +1,76 @@
-<p>form-formularios works!</p>
+<div class="container-fluid">
+    <div class="row mb-3">
+        <div class="col-lg-12">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Crear Formulario</mat-card-title>
+                </mat-card-header>
+                <div class="card-body mx-3 mb-3">
+                    <form [formGroup]="FormulariosForm" (ngSubmit)="onSubmit()" novalidate enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label">Nombre</label>
+                                    <input class="form-control" type="text" placeholder="Nombre"
+                                        formControlName="nombre">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label">Descripción</label>
+                                    <input class="form-control" type="textarea" placeholder="Nombre"
+                                        formControlName="descripcion">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <p><small>Introduzca el formulario en html siguiendo la siguiente <a
+                                                href="../../../../assets/example.html" download>plantilla</a></small>
+                                    </p>
+                                    <p><small>Tenga en cuenta la siguente <a>guía</a> para adaptar el pdf en el que será
+                                            plasmada la información del formulario relleno</small></p>
+                                    <textarea class="form-control" type="textarea" height="100px"
+                                        placeholder="HTML Formulario" formControlName="campos"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label">Rol del formulario</label>
+                                    <select class="form-control" formControlName="rol">
+                                        <option value="Profesor">Profesor</option>
+                                        <option value="Alumno">Alumno</option>
+                                        <option value="TutorEmpresa">Tutor Empresa</option>
+                                        <option value="TutorCentro">Tutor Centro</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+
+                                    <input type="file" (change)="getFile($event)"
+                                        formControlName="archivo" />
+                                </div>
+                            </div>
+                        </div>
+                        <button color="primary" class="w-100" mat-raised-button type="submit"><span>Crear
+                                formulario</span></button>
+                    </form>
+                </div>
+
+
+
+            </mat-card>
+
+        </div>
+    </div>
+</div>

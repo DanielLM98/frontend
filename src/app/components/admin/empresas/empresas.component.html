@@ -1,9 +1,9 @@
 <div class=" w-full overflow-hidden rounded-lg shadow-xs">
-    <div>
-        <button mat-raised-button class="btn-add" routerLink="/admin/centros/create"> + Crear
-            centro</button>
-    </div>
     <div class="w-full overflow-x-auto">
+        <div>
+            <button mat-raised-button class="btn-add" routerLink="/admin/empresas/create"> + Crear
+                empresa</button>
+        </div>
         <table class="w-full whitespace-no-wrap">
             <thead>
                 <tr
@@ -13,35 +13,30 @@
                     <th class="px-4 py-3">Direccion</th>
                     <th class="px-4 py-3">Correo Electronico</th>
                     <th class="px-4 py-3">Telefono</th>
-
-
-
                     <th class="px-4 py-3">Acciones</th>
                 </tr>
+                
             </thead>
             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                <tr *ngFor="let centro of centros$ | async; let i = index" class="text-gray-700 dark:text-gray-400">
+                <tr *ngFor="let empresa of empresas$ | async; let i = index" class="text-gray-700 dark:text-gray-400">
 
                     <td class="px-4 py-3">{{ i + 1 }}</td>
-                    <td class="px-4 py-3">{{ centro.Nombre }}</td>
-                    <td class="px-4 py-3">{{ centro.Direccion }}</td>
-                    <td class="px-4 py-3">{{ centro.CorreoElectronico }}</td>
-                    <td class="px-4 py-3">{{ centro.Telefono }}</td>
+                    <td class="px-4 py-3">{{ empresa.Nombre }}</td>
+                    <td class="px-4 py-3">{{ empresa.Direccion }}</td>
+                    <td class="px-4 py-3">{{ empresa.CorreoElectronico }}</td>
+                    <td class="px-4 py-3">{{ empresa.Telefono }}</td>
 
 
 
 
                     <td class="px-4 py-3">
-                        <a routerLink="/admin/centros/{{centro.ID}}/edit">
-                        <button mat-icon-button>
+                        <a routerLink="/admin/empresas/{{empresa.ID}}/edit"><button mat-icon-button>
                             <mat-icon color="primary">edit</mat-icon>
                         </button>
                     </a>
-                    <a routerLink="/admin/centros/{{centro.ID}}/delete">
                         <button mat-icon-button>
                             <mat-icon color="warn">delete</mat-icon>
                         </button>
-                    </a>
                     </td>
                 </tr>
             </tbody>

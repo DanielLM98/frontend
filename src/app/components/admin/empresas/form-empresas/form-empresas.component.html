@@ -1,0 +1,100 @@
+<div class="container-fluid">
+    <h2 class="text-dark mb-4">Formulario de empresas</h2>
+    <div class="row mb-3">
+        <div class="col-lg-12">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Empresas</mat-card-title>
+                </mat-card-header>
+                <div *ngIf="ExisteEmpresa; else create" class="card-body mx-3 mb-3">
+                    <form [formGroup]="empresasForm" (ngSubmit)="onUpdate()" novalidate>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label">Nombre</label>
+                                    <input class="form-control" type="text" placeholder="{{Empresa.Nombre}}"
+                                        formControlName="nombre" [(ngModel)]=Empresa.Nombre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label">Direccion</label>
+                                    <input class="form-control" type="text" placeholder="Direccion"
+                                        formControlName="direccion" [(ngModel)]=Empresa.Direccion>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label">Correo Electronico</label>
+                                    <input class="form-control" type="email" placeholder="Correo Electronico"
+                                        formControlName="correoElectronico" [(ngModel)]=Empresa.CorreoElectronico>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label">Telefono</label>
+                                    <input class="form-control" type="text" placeholder="Telefono"
+                                        formControlName="telefono" [(ngModel)]=Empresa.Telefono>
+                                </div>
+                            </div>
+                        </div>
+                        <button color="primary" class="w-100" [disabled]="!empresasForm.valid" mat-raised-button
+                        type="submit"><span>Editar empresa</span></button>
+                    </form>
+                </div>
+
+                <ng-template #create>
+                    <div *ngIf="Empresa == null" class="card-body mx-3 mb-3">
+                        <form [formGroup]="empresasForm" (ngSubmit)="onSubmit()" novalidate>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label">Nombre</label>
+                                        <input class="form-control" type="text" placeholder="Nombre"
+                                            formControlName="nombre">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label">Direccion</label>
+                                        <input class="form-control" type="text" placeholder="Direccion"
+                                            formControlName="direccion">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label">Correo Electronico</label>
+                                        <input class="form-control" type="email" placeholder="Correo Electronico"
+                                            formControlName="correoElectronico">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label">Telefono</label>
+                                        <input class="form-control" type="text" placeholder="Telefono"
+                                            formControlName="telefono">
+                                    </div>
+                                </div>
+                            </div>
+                            <button color="primary" class="w-100" [disabled]="!empresasForm.valid" mat-raised-button
+                            type="submit"><span>Crear empresa</span></button>
+                        </form>
+                    </div>
+                </ng-template>
+            </mat-card>
+
+        </div>
+    </div>
+</div>

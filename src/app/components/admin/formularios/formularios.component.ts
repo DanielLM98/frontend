@@ -20,4 +20,10 @@ export class FormulariosComponent implements OnInit{
   this.formularios$ = this.formulariosService.fetchAll();
   console.log(this.formularios$)
   }
+
+  delete(id: number): void {
+    this.formulariosService.delete(id).subscribe((msg) => console.log(msg));
+    this.formularios$ = this.formulariosService.fetchAll();
+    this,window.location.reload();
+  }
 }

@@ -30,6 +30,9 @@ import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassw
 import { FormulariosComponent } from './components/admin/formularios/formularios.component';
 import { FormInputsComponent } from './components/admin/formularios/form-inputs/form-inputs.component';
 import { FormFormulariosComponent } from './components/admin/formularios/form-formularios/form-formularios.component';
+import { EmpresasComponent } from './components/admin/empresas/empresas.component';
+import { FormEmpresasComponent } from './components/admin/empresas/form-empresas/form-empresas.component';
+import { FormUsuariosComponent } from './components/admin/usuarios/form-usuarios/form-usuarios.component';
 
 
 
@@ -48,6 +51,9 @@ import { FormFormulariosComponent } from './components/admin/formularios/form-fo
     FormulariosComponent,
     FormInputsComponent,
     FormFormulariosComponent,
+    EmpresasComponent,
+    FormEmpresasComponent,
+    FormUsuariosComponent,
   ],
   imports: [
     BrowserModule,

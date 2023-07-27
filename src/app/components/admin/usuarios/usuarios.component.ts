@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
@@ -9,7 +9,7 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
   templateUrl: './usuarios.component.html',
   styleUrls: ['./usuarios.component.css']
 })
-export class UsuariosComponent implements OnInit {
+export class UsuariosComponent {
   usuarios$!: Observable<User[]>; 
 
   constructor(private usuariosService: UsuariosService, private authService: AuthService) { }
@@ -18,5 +18,4 @@ export class UsuariosComponent implements OnInit {
 
     console.log(this.usuarios$)
   }
-
 }

@@ -9,8 +9,10 @@ import { FormCentrosComponent } from './components/admin/centros/form-centros/fo
 import { AuthGuardService } from './services/auth-guard.service';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { FormulariosComponent } from './components/admin/formularios/formularios.component';
-import { FormInputsComponent } from './components/admin/formularios/form-inputs/form-inputs.component';
 import { FormFormulariosComponent } from './components/admin/formularios/form-formularios/form-formularios.component';
+import { EmpresasComponent } from './components/admin/empresas/empresas.component';
+import { FormUsuariosComponent } from './components/admin/usuarios/form-usuarios/form-usuarios.component';
+import { FormEmpresasComponent } from './components/admin/empresas/form-empresas/form-empresas.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent, canActivate: [AuthGuardService]},
@@ -19,13 +21,22 @@ const routes: Routes = [
   { path: "usuarios", component: UsuariosComponent},
   { path: "forgot-password", component: ForgotpasswordComponent},
 
+  //admin
   { path: "admin/centros", component: CentrosComponent, canActivate: [AuthGuardService]},
   { path: "admin/centros/:id/edit", component: FormCentrosComponent, canActivate: [AuthGuardService]},
   { path: "admin/centros/create", component: FormCentrosComponent, canActivate: [AuthGuardService]},
   { path: "admin/formularios", component: FormulariosComponent, canActivate: [AuthGuardService]},
   { path: "admin/formularios/:id/edit", component: FormFormulariosComponent, canActivate: [AuthGuardService]},
   { path: "admin/formularios/create", component: FormFormulariosComponent, canActivate: [AuthGuardService]},
-  { path: "admin/formularios/:id/inputs", component: FormInputsComponent, canActivate: [AuthGuardService]},
+  { path: "admin/formularios/:id/preview", component: FormFormulariosComponent, canActivate: [AuthGuardService]},
+  { path: "admin/empresas", component: EmpresasComponent, canActivate: [AuthGuardService]},
+  { path: "admin/empresas/:id/edit", component: FormEmpresasComponent, canActivate: [AuthGuardService]},
+  { path: "admin/empresas/create", component: FormEmpresasComponent, canActivate: [AuthGuardService]},
+  { path: "admin/usuarios", component: UsuariosComponent, canActivate: [AuthGuardService]},
+  { path: "admin/usuarios/:id/edit", component: FormUsuariosComponent, canActivate: [AuthGuardService]},
+  { path: "admin/usuarios/create", component: FormUsuariosComponent, canActivate: [AuthGuardService]},
+  
+
   { path: "**", redirectTo: ""}
 
   
