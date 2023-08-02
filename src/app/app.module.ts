@@ -33,6 +33,8 @@ import { FormFormulariosComponent } from './components/admin/formularios/form-fo
 import { EmpresasComponent } from './components/admin/empresas/empresas.component';
 import { FormEmpresasComponent } from './components/admin/empresas/form-empresas/form-empresas.component';
 import { FormUsuariosComponent } from './components/admin/usuarios/form-usuarios/form-usuarios.component';
+import { AuthGuardService } from './services/auth-guard.service';
+import { SignformComponent } from './components/signform/signform.component';
 
 
 
@@ -54,6 +56,7 @@ import { FormUsuariosComponent } from './components/admin/usuarios/form-usuarios
     EmpresasComponent,
     FormEmpresasComponent,
     FormUsuariosComponent,
+    SignformComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,7 +77,7 @@ import { FormUsuariosComponent } from './components/admin/usuarios/form-usuarios
       useClass: AuthInterceptorService,
       multi: true,
     },
-    AuthService
+    AuthService, AuthGuardService
 
   ],
   bootstrap: [AppComponent]

@@ -52,5 +52,9 @@ export class FormulariosService {
     );
   }
 
- 
+  getFormulariosbyRol(rol: string): Observable<Formulario[]> {
+    return this.http.get<Formulario[]>(`${this.url}/getbyrol/${rol}`, this.httpOptions).pipe(
+      catchError(this.errorHandlerService.handleError<Formulario[]>("getFormulariosbyRol", []))
+    );
+  }
 }

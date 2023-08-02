@@ -4,40 +4,57 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { first, catchError, tap } from 'rxjs/operators';
 
+import { CookieService } from 'ngx-cookie-service';
 
 import { User } from '../models/User';
 import { ErrorHandlerService } from './error-handler.service';
 import { Router } from '@angular/router';
+import jwt_decode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
 })
 
 
-export class AuthService implements OnInit{
+export class AuthService implements OnInit {
   private url = "http://localhost:3000/auth";
 
   isUserLoggedIn$ = new BehaviorSubject<boolean>(false);
   userId!: Pick<User, "id">;
-  user$ =new BehaviorSubject<User>({} as User);
+  user$ = new Observable<User>();
   private _user: User | null = null; // Usuario logueado
+  private role: string = ""; // Rol del usuario logueado
 
 
   private httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
-  constructor(private http: HttpClient, private errorHandlerService: ErrorHandlerService, private router: Router) { }
+  constructor(private http: HttpClient, private errorHandlerService: ErrorHandlerService, private router: Router, private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem("token")) {
+    if (sessionStorage.getItem("token")) {
       this.isUserLoggedIn$.next(true);
     }
   }
 
+  isAutenticated(): boolean {
+    if (this.cookieService.get("token")) {
+      let decoded = jwt_decode(sessionStorage.getItem("token")!) as any;
+      if (decoded.exp < Date.now() / 1000) {
+
+        return false
+      }
+      else {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  }
   getUsuario(): User | null {
-    console.log(this.user$);
+
     return this._user;
   }
-   signup(user: Omit<User, "id">): Observable<User> {
+  signup(user: Omit<User, "id">): Observable<User> {
     user.estado = "Activo";
     user.tipoUsuario = "Usuario";
     console.log(user)
@@ -53,20 +70,21 @@ export class AuthService implements OnInit{
   }> {
 
     return this.http
-    .post(`${this.url}/login`, { correoElectronico, contrasena }, this.httpOptions)
-    .pipe(
-      first<any>(),
-      tap((tokenObject: { token: string, userSession: User, userId: number }) => { 
-        this._user = tokenObject.userSession;
-        this._user.id = tokenObject.userId;
-        this.user$.next(this._user);
-
-        localStorage.setItem("token", tokenObject.token);
-        this.isUserLoggedIn$.next(true);
-        console.log(this.user$)
-        this.router.navigate(["/"]);
-      }),
-      catchError(this.errorHandlerService.handleError<{ token: string, userSession: User, userId: number }>("login"))
-    );
+      .post(`${this.url}/login`, { correoElectronico, contrasena }, this.httpOptions)
+      .pipe(
+        first<any>(),
+        tap((tokenObject: { token: string, userSession: User, userId: number }) => {
+          this._user = tokenObject.userSession;
+          this._user.id = tokenObject.userId;
+          this.role = this._user.tipoUsuario;
+          this.cookieService.set("token", tokenObject.token);
+          this.cookieService.set("user", JSON.stringify(this._user));
+          localStorage.setItem("token", tokenObject.token);
+          this.isUserLoggedIn$.next(true);
+          console.log(this.user$)
+          this.router.navigate(["/"]);
+        }),
+        catchError(this.errorHandlerService.handleError<{ token: string, userSession: User, userId: number }>("login"))
+      );
   }
 }

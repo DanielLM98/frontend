@@ -22,19 +22,19 @@ const routes: Routes = [
   { path: "forgot-password", component: ForgotpasswordComponent},
 
   //admin
-  { path: "admin/centros", component: CentrosComponent, canActivate: [AuthGuardService]},
-  { path: "admin/centros/:id/edit", component: FormCentrosComponent, canActivate: [AuthGuardService]},
-  { path: "admin/centros/create", component: FormCentrosComponent, canActivate: [AuthGuardService]},
-  { path: "admin/formularios", component: FormulariosComponent, canActivate: [AuthGuardService]},
-  { path: "admin/formularios/:id/edit", component: FormFormulariosComponent, canActivate: [AuthGuardService]},
-  { path: "admin/formularios/create", component: FormFormulariosComponent, canActivate: [AuthGuardService]},
-  { path: "admin/formularios/:id/preview", component: FormFormulariosComponent, canActivate: [AuthGuardService]},
-  { path: "admin/empresas", component: EmpresasComponent, canActivate: [AuthGuardService]},
-  { path: "admin/empresas/:id/edit", component: FormEmpresasComponent, canActivate: [AuthGuardService]},
-  { path: "admin/empresas/create", component: FormEmpresasComponent, canActivate: [AuthGuardService]},
-  { path: "admin/usuarios", component: UsuariosComponent, canActivate: [AuthGuardService]},
-  { path: "admin/usuarios/:id/edit", component: FormUsuariosComponent, canActivate: [AuthGuardService]},
-  { path: "admin/usuarios/create", component: FormUsuariosComponent, canActivate: [AuthGuardService]},
+  { path: "admin/centros", component: CentrosComponent, canActivate: [AuthGuardService] , data: {roles: ["Administrador"]}},
+  { path: "admin/centros/:id/edit", component: FormCentrosComponent, canActivate: [AuthGuardService], data: {roles: ["Administrador"]}},
+  { path: "admin/centros/create", component: FormCentrosComponent, canActivate: [AuthGuardService], data: {roles: ["Administrador"]}},
+  { path: "admin/formularios", component: FormulariosComponent, canActivate: [AuthGuardService], data: {roles: ["Administrador"]}},
+  { path: "admin/formularios/:id/edit", component: FormFormulariosComponent, canActivate: [AuthGuardService], data: {roles: ["Administrador"]}},
+  { path: "admin/formularios/create", component: FormFormulariosComponent, canActivate: [AuthGuardService], data: {roles: ["Administrador"]}},
+  { path: "admin/formularios/:id/preview", component: FormFormulariosComponent, canActivate: [AuthGuardService], data: {roles: ["Administrador"]}},
+  { path: "admin/empresas", component: EmpresasComponent, canActivate: [AuthGuardService], data: {roles: ["Administrador"]}},
+  { path: "admin/empresas/:id/edit", component: FormEmpresasComponent, canActivate: [AuthGuardService], data: {roles: ["Administrador"]}},
+  { path: "admin/empresas/create", component: FormEmpresasComponent, canActivate: [AuthGuardService], data: {roles: ["Administrador"]}},
+  { path: "admin/usuarios", component: UsuariosComponent, canActivate: [AuthGuardService], data: {roles: ["Administrador"]}},
+  { path: "admin/usuarios/:id/edit", component: FormUsuariosComponent, canActivate: [AuthGuardService], data: {roles: ["Administrador"]}},
+  { path: "admin/usuarios/create", component: FormUsuariosComponent, canActivate: [AuthGuardService], data: {roles: ["Administrador"]}},
   
 
   { path: "**", redirectTo: ""}
