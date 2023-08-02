@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, first } from 'rxjs';
 import { Formulario } from '../models/Formulario';
 import { ErrorHandlerService } from './error-handler.service';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class FormulariosService {
 
   private url = "http://localhost:3000/formularios";
   private httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+  
   constructor(private http: HttpClient, private errorHandlerService: ErrorHandlerService) { }
   
 
@@ -22,13 +24,16 @@ export class FormulariosService {
     );
   }
   create(Formulario: FormData): Observable<Formulario> {
-       return this.http.post<Formulario>(`${this.url}/create`, Formulario, this.httpOptions).pipe(
+       return this.http.post<Formulario>(`${this.url}/create`, Formulario).pipe(
       first(),
       catchError(this.errorHandlerService.handleError<Formulario>("create Formulario"))
     );
   }
 
-  update(idFormulario: number,Formulario: Formulario): Observable<Formulario> {
+
+  
+
+  update(idFormulario: number,Formulario: FormData): Observable<Formulario> {
     return this.http.put<Formulario>(`${this.url}/update/${idFormulario}`, Formulario, this.httpOptions).pipe(
       first(),
       catchError(this.errorHandlerService.handleError<Formulario>("update Formulario"))

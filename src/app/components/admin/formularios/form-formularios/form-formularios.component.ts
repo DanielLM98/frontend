@@ -18,6 +18,7 @@ export class FormFormulariosComponent implements OnInit{
   Formulario!: Formulario;
   FormularioId!: number;
   private fileTmp:any;
+  private archivos:any;
   
 
   constructor(private formulariosService: FormulariosService, private route: ActivatedRoute, private sanitizer: DomSanitizer) { }
@@ -48,45 +49,32 @@ export class FormFormulariosComponent implements OnInit{
     sanitizedString = "<form [ngSubmit]='onSubmit()' novalidate>" + sanitizedString + "</form>";
     return sanitizedString;
   }
-  onSubmit(){
-    const archivos = new FormData();
-    archivos.append("archivo", this.fileTmp);
-   
-    if(this.FormulariosForm.valid){
-      if(this.ExisteFormulario){
-        this.FormulariosForm.value.campos = this.sanitizeHtml(this.FormulariosForm.value.campos);
-        const archivo = this.FormulariosForm.value.archivo;
-        
-        this.formulariosService.update(this.FormularioId, this.FormulariosForm.value).pipe().subscribe((form) => {
-          console.log(form);
-        });
-      }else{
-        this.FormulariosForm.value.archivo = archivos;
-        this.FormulariosForm.value.campos = this.sanitizeHtml(this.FormulariosForm.value.campos);
-        this.formulariosService.create(this.FormulariosForm.value).pipe().subscribe((form) => {
-          console.log(form);
-        });
-      }
-    }
-  }
- 
-  bodyAppend():FormData{
-    const archivos = new FormData();
-    archivos.append("archivo", this.fileTmp);
-    archivos.append("nombre", this.FormulariosForm.value.nombre);
-    archivos.append("descripcion", this.FormulariosForm.value.descripcion);
-    archivos.append("campos", this.FormulariosForm.value.campos);
-    archivos.append("rol", this.FormulariosForm.value.rol);
-    return archivos;
 
+  onSubmit(){
+    const formData = new FormData();
+    formData.append('nombre', this.FormulariosForm.get('nombre')!.value);
+    formData.append('descripcion', this.FormulariosForm.get('descripcion')!.value);
+    formData.append('campos', this.FormulariosForm.get('campos')!.value);
+    formData.append('rol', this.FormulariosForm.get('rol')!.value);
+    formData.append('archivo', this.archivos);
+
+    console.log(formData);
+    this.formulariosService.create(formData).pipe().subscribe((form) => {
+      console.log(form);
+    }
+    );
+
+    
   }
+  
+
   createFormGroup(): FormGroup {
     return new FormGroup({
       nombre: new FormControl("", [Validators.required, Validators.minLength(8)]),
       descripcion: new FormControl("", [Validators.required, Validators.minLength(8)]),
       campos: new FormControl("", [Validators.required]),
       rol: new FormControl("", [Validators.required]),
-      archivo: new FormControl("", [Validators.required,]),
+      archivo: new FormControl(null, [Validators.required,]),
      
 
 
@@ -94,11 +82,9 @@ export class FormFormulariosComponent implements OnInit{
   }
 
   getFile( $event: any ): void {
-    console.log($event);
-    const file = $event.target.files;
-    this.fileTmp = {
-      fileRaw:file,
-      fileName:file.name
+    const archivo = $event.target.files[0];
+    this.archivos = archivo;
+
     }
-  }
+    
 }
