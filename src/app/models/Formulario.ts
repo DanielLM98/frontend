@@ -4,6 +4,6 @@ export interface Formulario {
     ID: number;
     Nombre: string;
     Descripcion: string;
-    Campos: FormField[];
+    Campos: string;
     Rol: string;
 }

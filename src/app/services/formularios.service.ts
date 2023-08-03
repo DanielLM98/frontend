@@ -9,14 +9,14 @@ import { FormGroup } from '@angular/forms';
   providedIn: 'root'
 })
 export class FormulariosService {
- 
+
 
 
   private url = "http://localhost:3000/formularios";
   private httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-  
+
   constructor(private http: HttpClient, private errorHandlerService: ErrorHandlerService) { }
-  
+
 
   fetchAll(): Observable<Formulario[]> {
     return this.http.get<Formulario[]>(this.url).pipe(
@@ -24,16 +24,24 @@ export class FormulariosService {
     );
   }
   create(Formulario: FormData): Observable<Formulario> {
-       return this.http.post<Formulario>(`${this.url}/create`, Formulario).pipe(
+    return this.http.post<Formulario>(`${this.url}/create`, Formulario).pipe(
       first(),
       catchError(this.errorHandlerService.handleError<Formulario>("create Formulario"))
     );
   }
+  rellenar(userID:number, formID: number, signForm: string) {
+    let test = { "IDUsuario": userID, "IDFormulario": formID, "Respuestas": signForm}
+    return this.http.post(`http://localhost:3000/respuestas/create/`, test).pipe(
+      first(),
+      catchError(this.errorHandlerService.handleError<any>("rellenar Formulario"))
+    );
+  }
 
 
-  
 
-  update(idFormulario: number,Formulario: FormData): Observable<Formulario> {
+
+
+  update(idFormulario: number, Formulario: FormData): Observable<Formulario> {
     return this.http.put<Formulario>(`${this.url}/update/${idFormulario}`, Formulario, this.httpOptions).pipe(
       first(),
       catchError(this.errorHandlerService.handleError<Formulario>("update Formulario"))

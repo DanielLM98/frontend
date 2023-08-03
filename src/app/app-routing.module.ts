@@ -13,6 +13,7 @@ import { FormFormulariosComponent } from './components/admin/formularios/form-fo
 import { EmpresasComponent } from './components/admin/empresas/empresas.component';
 import { FormUsuariosComponent } from './components/admin/usuarios/form-usuarios/form-usuarios.component';
 import { FormEmpresasComponent } from './components/admin/empresas/form-empresas/form-empresas.component';
+import { SignformComponent } from './components/signform/signform.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent, canActivate: [AuthGuardService]},
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: "signup", component: SignupComponent},
   { path: "usuarios", component: UsuariosComponent},
   { path: "forgot-password", component: ForgotpasswordComponent},
+  { path: "form/:id/rellenar", component: SignformComponent, canActivate: [AuthGuardService]},
 
   //admin
   { path: "admin/centros", component: CentrosComponent, canActivate: [AuthGuardService] , data: {roles: ["Administrador"]}},

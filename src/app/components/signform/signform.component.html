@@ -5,10 +5,13 @@
                 <mat-card-header>
                     <mat-card-title>Responder Formulario</mat-card-title>
                 </mat-card-header>
-                <div class="card-body mx-3 mb-3" id="formulario">
+                <div class="card-body mx-3 mb-3">
+                    <form [formGroup]="signForm" (ngSubmit)="onSubmit()" novalidate>
+                        <div #formularioRef id="formulario" ></div>
+
+                        <button color="primary" class="w-100" mat-raised-button type="submit"><span>Rellenar</span></button>
+                    </form>
                 </div>
-
-
 
             </mat-card>
 

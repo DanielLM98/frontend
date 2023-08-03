@@ -31,14 +31,14 @@ export class AuthService implements OnInit {
   constructor(private http: HttpClient, private errorHandlerService: ErrorHandlerService, private router: Router, private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    if (sessionStorage.getItem("token")) {
+    if (localStorage.getItem("token")) {
       this.isUserLoggedIn$.next(true);
     }
   }
 
   isAutenticated(): boolean {
     if (this.cookieService.get("token")) {
-      let decoded = jwt_decode(sessionStorage.getItem("token")!) as any;
+      let decoded = jwt_decode(localStorage.getItem("token")!) as any;
       if (decoded.exp < Date.now() / 1000) {
 
         return false

@@ -14,14 +14,15 @@ export class AppComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) { }
   ngOnInit(): void {
-    if (sessionStorage.getItem("token")) {
+    if (localStorage.getItem("token")) {
       let decoded = jwt_decode(sessionStorage.getItem("token")!) as any;
       if (decoded.exp < Date.now() / 1000) {
-        sessionStorage.removeItem("token");
+        localStorage.removeItem("token");
         this.router.navigate(["/login"]);
       }
       else {
         this.authService.isUserLoggedIn$.next(true);
+        
         
       }
 
