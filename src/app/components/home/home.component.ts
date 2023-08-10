@@ -4,7 +4,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { Formulario } from 'src/app/models/Formulario';
 import { FormulariosService } from 'src/app/services/formularios.service';
-import { NavsuperiorComponent } from '../navsuperior/navsuperior.component';
 
 @Component({
   selector: 'app-home',
@@ -21,13 +20,11 @@ export class HomeComponent implements OnInit {
     let rol = JSON.parse(this.cookieService.get("user")).tipoUsuario;
 
     if(rol === "Administrador"){
-      this.router.navigate(['admin/centros']);
+      this.router.navigate(['admin']);
     }
     else{
       this.formularios$ = this.formulariosService.getFormulariosbyRol(rol);
       console.log(this.formularios$)
-      this.router.navigate([""]);
-
     }
 
   }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 
@@ -15,14 +14,9 @@ export class LoginComponent implements OnInit {
   showPwd: boolean = false;
 
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    if(this.authService.isAutenticated()){
-      this.authService.isUserLoggedIn$.next(true);
-      this.router.navigate(['']);
-    }
-
     this.loginForm = this.createFormGroup();
   }
 
@@ -35,6 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
+    console.log(this.loginForm.value)
     this.authService.login(this.loginForm.value.correoElectronico, this.loginForm.value.contrasena).subscribe(
       (data) => {
         if(data==undefined){

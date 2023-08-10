@@ -7,26 +7,21 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { CentrosComponent } from './components/admin/centros/centros.component';
 import { FormCentrosComponent } from './components/admin/centros/form-centros/form-centros.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { FormulariosComponent } from './components/admin/formularios/formularios.component';
 import { FormFormulariosComponent } from './components/admin/formularios/form-formularios/form-formularios.component';
 import { EmpresasComponent } from './components/admin/empresas/empresas.component';
 import { FormUsuariosComponent } from './components/admin/usuarios/form-usuarios/form-usuarios.component';
 import { FormEmpresasComponent } from './components/admin/empresas/form-empresas/form-empresas.component';
 import { SignformComponent } from './components/signform/signform.component';
-import { PerfilComponent } from './components/perfil/perfil.component';
-import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
-import { RecoveryComponent } from './components/recovery/recovery.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent, canActivate: [AuthGuardService]},
   { path: "login", component: LoginComponent},
   { path: "signup", component: SignupComponent},
-  { path: "recovery", component: RecoveryComponent},
-  { path: "resetPassword", component: ResetPasswordComponent},
-
   { path: "usuarios", component: UsuariosComponent},
+  { path: "forgot-password", component: ForgotpasswordComponent},
   { path: "form/:id/rellenar", component: SignformComponent, canActivate: [AuthGuardService]},
-  { path: "perfil", component: PerfilComponent, canActivate: [AuthGuardService]},
 
   //admin
   { path: "admin/centros", component: CentrosComponent, canActivate: [AuthGuardService] , data: {roles: ["Administrador"]}},
