@@ -15,7 +15,7 @@ export class NavsuperiorComponent {
   user!: User | null;;
 
   constructor(private authService: AuthService, private router: Router, private cookieService: CookieService) {
-    
+   
   }
 
 
@@ -29,8 +29,15 @@ export class NavsuperiorComponent {
 
   }
   logout(): void {
+<<<<<<< HEAD
     localStorage.removeItem('token');
+    this.cookieService.delete("token");
+    this.cookieService.delete("user");
+=======
+    this.cookieService.deleteAll();
+>>>>>>> main
     this.authService.isUserLoggedIn$.next(false);
+    this.isAutenticated = false;
     this.router.navigate(['login']);
   }
 }
