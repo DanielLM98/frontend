@@ -4,6 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { Formulario } from 'src/app/models/Formulario';
 import { FormulariosService } from 'src/app/services/formularios.service';
+import { NavsuperiorComponent } from '../navsuperior/navsuperior.component';
 
 @Component({
   selector: 'app-home',

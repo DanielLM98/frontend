@@ -20,7 +20,7 @@
                                 <mat-error *ngIf="loginForm.get('correoElectronico')?.hasError('email')">
                                     El correo electronico no es valido
                                 </mat-error>
-                                
+
                             </div>
                             <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
                             <mat-form-field>
@@ -31,18 +31,13 @@
                                 <mat-label>
                                     Contraseña
                                 </mat-label>
-                                <input matInput id="contrasena" type="password" placeholder="Enter your password"
-                                    formControlName="contrasena" required><i
-                                    class="fa "
-                                    [ngClass]="{'fa-eye': !showPwd, 'fa-eye-slash': showPwd}" (click)="showPassword()"></i>
+                                <input matInput id="contrasena" type="password" placeholder="Enter your password" formControlName="contrasena" required><i class="fa " [ngClass]="{'fa-eye': !showPwd, 'fa-eye-slash': showPwd}" (click)="showPassword()"></i>
                             </mat-form-field>
-                          
-                            <button color="accent" class="w-100" [disabled]="!loginForm.valid" mat-raised-button
-                                type="submit"><span>Login</span></button>
+
+                            <button color="accent" class="w-100" [disabled]="!loginForm.valid" mat-raised-button type="submit"><span>Login</span></button>
                         </form>
-                        <div class="text-center"><a class="small" routerLink="/forgot-password">¿Olvidó su contraseña?</a>
+                        <div class="text-center"><a class="small" routerLink="/recovery">¿Olvidó su contraseña?</a>
                         </div>
-                        <div class="text-center"><a class="small" routerLink="/signup">¿Aún no tiene cuenta? Crear cuenta</a></div>
                     </div>
                 </div>
             </div>

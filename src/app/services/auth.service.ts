@@ -31,14 +31,14 @@ export class AuthService implements OnInit {
   constructor(private http: HttpClient, private errorHandlerService: ErrorHandlerService, private router: Router, private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem("token")) {
+    if (this.cookieService.get("token")) {
       this.isUserLoggedIn$.next(true);
     }
   }
 
   isAutenticated(): boolean {
     if (this.cookieService.get("token")) {
-      let decoded = jwt_decode(localStorage.getItem("token")!) as any;
+      let decoded = jwt_decode(this.cookieService.get("token")!) as any;
       if (decoded.exp < Date.now() / 1000) {
 
         return false
@@ -81,10 +81,34 @@ export class AuthService implements OnInit {
           this.cookieService.set("user", JSON.stringify(this._user));
           localStorage.setItem("token", tokenObject.token);
           this.isUserLoggedIn$.next(true);
-          console.log(this.user$)
           this.router.navigate(["/"]);
         }),
         catchError(this.errorHandlerService.handleError<{ token: string, userSession: User, userId: number }>("login"))
       );
   }
+
+  logout(): void {
+    this.cookieService.delete("token");
+    this.cookieService.delete("user");
+    this.isUserLoggedIn$.next(false);
+    this.router.navigate(['login']);
+  }
+
+  resetPassword(password: String): Observable<User> {
+    return this.http.put(`${this.url}/resetPassword`, password, this.httpOptions).pipe(
+      first<any>(),
+      catchError(this.errorHandlerService.handleError<User>("resetPassword"))
+    );
+  }
+
+  recoveryPassword(correoElectronico: String): Observable<User> {
+
+    return this.http.post(`${this.url}/recovery`, correoElectronico, this.httpOptions).pipe(
+      first<any>(),
+      catchError(this.errorHandlerService.handleError<User>("recoveryPassword"))
+    );
+     
+  }
+
+
 }

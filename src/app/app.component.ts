@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
 import jwt_decode from "jwt-decode";
+import { NavsuperiorComponent } from './components/navsuperior/navsuperior.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements OnInit {
   title = 'frontend';
 
@@ -22,6 +24,7 @@ export class AppComponent implements OnInit {
       }
       else {
         this.authService.isUserLoggedIn$.next(true);
+        this.router.navigate([""]);
         
         
       }
