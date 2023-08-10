@@ -20,10 +20,11 @@ export class NavsuperiorComponent {
 
 
   ngOnInit(): void {
-    if(this.cookieService.get("token")){
-      this.isAutenticated = true;
-      this.user = JSON.parse(this.cookieService.get("user")) ;
-    }
+    this.authService.isUserLoggedIn$.subscribe((isLoggedIn) => {
+      this.isAutenticated = isLoggedIn;
+    });
+
+    this.user = JSON.parse(this.cookieService.get("user"));
 
 
   }
