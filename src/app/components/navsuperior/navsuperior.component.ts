@@ -20,17 +20,29 @@ export class NavsuperiorComponent {
 
 
   ngOnInit(): void {
+<<<<<<< HEAD
     this.authService.isUserLoggedIn$.subscribe((isLoggedIn) => {
       this.isAutenticated = isLoggedIn;
     });
     this.user = JSON.parse(this.cookieService.get("user"));
+=======
+    if(this.cookieService.get("token")!="" && this.cookieService.get("user")!=""){
+      console.log("hola")
+      this.isAutenticated = true;
+      this.user = JSON.parse(this.cookieService.get("user")) ;
+    }
+>>>>>>> main
 
 
   }
   logout(): void {
+<<<<<<< HEAD
     localStorage.removeItem('token');
     this.cookieService.delete("token");
     this.cookieService.delete("user");
+=======
+    this.cookieService.deleteAll();
+>>>>>>> main
     this.authService.isUserLoggedIn$.next(false);
     this.isAutenticated = false;
     this.router.navigate(['login']);

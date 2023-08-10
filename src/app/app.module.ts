@@ -28,7 +28,6 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { AuthService } from './services/auth.service';
-import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { FormulariosComponent } from './components/admin/formularios/formularios.component';
 import { FormInputsComponent } from './components/admin/formularios/form-inputs/form-inputs.component';
 import { FormFormulariosComponent } from './components/admin/formularios/form-formularios/form-formularios.component';
@@ -37,7 +36,9 @@ import { FormEmpresasComponent } from './components/admin/empresas/form-empresas
 import { FormUsuariosComponent } from './components/admin/usuarios/form-usuarios/form-usuarios.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { SignformComponent } from './components/signform/signform.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { RecoveryComponent } from './components/recovery/recovery.component';
 
 
 
@@ -52,7 +53,6 @@ import { PerfilComponent } from './components/perfil/perfil.component';
     CentrosComponent,
     FormCentrosComponent,
     NavsuperiorComponent,
-    ForgotpasswordComponent,
     FormulariosComponent,
     FormInputsComponent,
     FormFormulariosComponent,
@@ -60,9 +60,9 @@ import { PerfilComponent } from './components/perfil/perfil.component';
     FormEmpresasComponent,
     FormUsuariosComponent,
     SignformComponent,
+    ResetPasswordComponent,
     PerfilComponent,
     RecoveryComponent,
-    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
