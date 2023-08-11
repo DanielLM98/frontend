@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SignupComponent } from './signup.component';
+import { RecoveryComponent } from './recovery.component';
 
-describe('SignupComponent', () => {
-  let component: SignupComponent;
-  let fixture: ComponentFixture<SignupComponent>;
+describe('RecoveryComponent', () => {
+  let component: RecoveryComponent;
+  let fixture: ComponentFixture<RecoveryComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SignupComponent]
+      declarations: [RecoveryComponent]
     });
-    fixture = TestBed.createComponent(SignupComponent);
+    fixture = TestBed.createComponent(RecoveryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

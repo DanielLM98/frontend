@@ -1,4 +1,4 @@
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, first } from 'rxjs';
 import { User } from '../models/User';
@@ -36,6 +36,12 @@ export class UsuariosService {
   fetchById(id: number): Observable<User> {
     return this.http.get<User>(`${this.url}/get/${id}`).pipe(
       catchError(this.errorHandlerService.handleError<User>("getById User"))
+    );
+  }
+
+  fetchByCentro(id: number): Observable<User[]> {
+    return this.http.get<User[]>(`${this.url}/getByCentro/${id}`).pipe(
+      catchError(this.errorHandlerService.handleError<User[]>("getById User"))
     );
   }
 

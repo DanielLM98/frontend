@@ -16,9 +16,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { LoginComponent } from './components/login/login.component';
-import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
-import { UsuariosComponent } from './components/admin/usuarios/usuarios.component';
 import { CentrosComponent } from './components/admin/centros/centros.component';
 import { FormCentrosComponent } from './components/admin/centros/form-centros/form-centros.component';
 import { NavsuperiorComponent } from './components/navsuperior/navsuperior.component';
@@ -32,9 +30,9 @@ import { FormInputsComponent } from './components/admin/formularios/form-inputs/
 import { FormFormulariosComponent } from './components/admin/formularios/form-formularios/form-formularios.component';
 import { EmpresasComponent } from './components/admin/empresas/empresas.component';
 import { FormEmpresasComponent } from './components/admin/empresas/form-empresas/form-empresas.component';
-import { FormUsuariosComponent } from './components/admin/usuarios/form-usuarios/form-usuarios.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { SignformComponent } from './components/signform/signform.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 
 
@@ -43,9 +41,7 @@ import { SignformComponent } from './components/signform/signform.component';
     AppComponent,
     NavigationComponent,
     LoginComponent,
-    SignupComponent,
     HomeComponent,
-    UsuariosComponent,
     CentrosComponent,
     FormCentrosComponent,
     NavsuperiorComponent,
@@ -55,8 +51,8 @@ import { SignformComponent } from './components/signform/signform.component';
     FormFormulariosComponent,
     EmpresasComponent,
     FormEmpresasComponent,
-    FormUsuariosComponent,
     SignformComponent,
+    PerfilComponent,
   ],
   imports: [
     BrowserModule,

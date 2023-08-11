@@ -20,7 +20,7 @@ export class NavsuperiorComponent {
     this.authService.isUserLoggedIn$.subscribe((isLoggedIn) => {
       this.isAutenticated = isLoggedIn;
     });
-
+    
     this.user = JSON.parse(this.cookieService.get("user"));
     console.log(this.user)
 
