@@ -15,7 +15,7 @@ import { CentrosService } from 'src/app/services/centros.service';
 export class CentrosComponent implements OnInit{
 
   centros$!: Observable<Centro[]>; 
-  userId!: Pick<User, "id">;
+  userId!: Pick<User, "ID">;
 
   constructor(private centrosService: CentrosService, private authService: AuthService) { }
   ngOnInit(): void {
