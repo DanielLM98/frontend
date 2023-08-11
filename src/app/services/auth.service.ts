@@ -76,7 +76,6 @@ export class AuthService implements OnInit {
         tap((tokenObject: { token: string, userSession: User, userId: number }) => {
           this._user = tokenObject.userSession;
           this._user.ID = tokenObject.userId;
-          console.log(this._user)
           this.role = this._user.TipoUsuario;
           this.cookieService.set("token", tokenObject.token);
           this.cookieService.set("user", JSON.stringify(this._user));
