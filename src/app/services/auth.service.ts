@@ -20,7 +20,7 @@ export class AuthService implements OnInit {
   private url = "http://localhost:3000/auth";
 
   isUserLoggedIn$ = new BehaviorSubject<boolean>(false);
-  userId!: Pick<User, "id">;
+  userId!: Pick<User, "ID">;
   user$ = new Observable<User>();
   private _user: User | null = null; // Usuario logueado
   private role: string = ""; // Rol del usuario logueado
@@ -54,9 +54,9 @@ export class AuthService implements OnInit {
 
     return this._user;
   }
-  signup(user: Omit<User, "id">): Observable<User> {
-    user.estado = "Activo";
-    user.tipoUsuario = "Usuario";
+  signup(user: Omit<User, "ID">): Observable<User> {
+    user.Estado = "Activo";
+    user.TipoUsuario = "Usuario";
     console.log(user)
 
     return this.http.post<User>(`${this.url}/signup`, user, this.httpOptions).pipe(
@@ -65,7 +65,7 @@ export class AuthService implements OnInit {
     );
   }
 
-  login(correoElectronico: Pick<User, "correoElectronico">, contrasena: Pick<User, "contrasena">): Observable<{
+  login(correoElectronico: Pick<User, "CorreoElectronico">, contrasena: Pick<User, "Contrasena">): Observable<{
     token: string; userSession: User; userId: number
   }> {
 
@@ -75,8 +75,9 @@ export class AuthService implements OnInit {
         first<any>(),
         tap((tokenObject: { token: string, userSession: User, userId: number }) => {
           this._user = tokenObject.userSession;
-          this._user.id = tokenObject.userId;
-          this.role = this._user.tipoUsuario;
+          this._user.ID = tokenObject.userId;
+          console.log(this._user)
+          this.role = this._user.TipoUsuario;
           this.cookieService.set("token", tokenObject.token);
           this.cookieService.set("user", JSON.stringify(this._user));
           localStorage.setItem("token", tokenObject.token);

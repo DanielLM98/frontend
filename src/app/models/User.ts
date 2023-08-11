@@ -1,11 +1,11 @@
 export interface User { 
-    id: number;
-    nombre: string;
-    apellido: string;
-    correoElectronico: string;
-    contrasena: string;
-    tipoUsuario: string;
-    estado: string;
+    ID: number;
+    Nombre: string;
+    Apellido: string;
+    CorreoElectronico: string;
+    Contrasena: string;
+    TipoUsuario: string;
+    Estado: string;
 
 
 }

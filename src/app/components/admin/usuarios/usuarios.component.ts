@@ -15,7 +15,5 @@ export class UsuariosComponent {
   constructor(private usuariosService: UsuariosService, private authService: AuthService) { }
   ngOnInit(): void {
     this.usuarios$ = this.usuariosService.fetchAll();
-
-    console.log(this.usuarios$)
   }
 }

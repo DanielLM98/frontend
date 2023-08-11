@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -14,9 +13,7 @@ export class NavsuperiorComponent {
   isAutenticated = false;
   user!: User | null;;
 
-  constructor(private authService: AuthService, private router: Router, private cookieService: CookieService) {
-    
-  }
+  constructor(private authService: AuthService, private router: Router, private cookieService: CookieService) { }
 
 
   ngOnInit(): void {
@@ -25,6 +22,7 @@ export class NavsuperiorComponent {
     });
 
     this.user = JSON.parse(this.cookieService.get("user"));
+    console.log(this.user)
 
 
   }
