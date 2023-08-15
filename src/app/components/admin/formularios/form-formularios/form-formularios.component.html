@@ -11,8 +11,7 @@
                             <div class="col">
                                 <div class="mb-3">
                                     <label class="form-label">Nombre</label>
-                                    <input class="form-control" type="text" placeholder="Nombre"
-                                        formControlName="nombre">
+                                    <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre">
                                 </div>
                             </div>
                         </div>
@@ -21,8 +20,7 @@
                             <div class="col">
                                 <div class="mb-3">
                                     <label class="form-label">Descripción</label>
-                                    <input class="form-control" type="textarea" placeholder="Nombre"
-                                        formControlName="descripcion">
+                                    <input class="form-control" type="textarea" placeholder="Nombre" formControlName="descripcion">
                                 </div>
                             </div>
                         </div>
@@ -34,8 +32,7 @@
                                     </p>
                                     <p><small>Tenga en cuenta la siguente <a>guía</a> para adaptar el pdf en el que será
                                             plasmada la información del formulario relleno</small></p>
-                                    <textarea class="form-control" type="textarea" height="100px"
-                                        placeholder="HTML Formulario" formControlName="campos"></textarea>
+                                    <textarea class="form-control" type="textarea" height="100px" placeholder="HTML Formulario" formControlName="campos"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +43,7 @@
                                     <label class="form-label">Rol del formulario</label>
                                     <select class="form-control" formControlName="rol">
                                         <option value="Profesor">Profesor</option>
-                                        <option value="Alumno">Alumno</option>
+                                        <option value="Alumno" selected>Alumno</option>
                                         <option value="TutorEmpresa">Tutor Empresa</option>
                                         <option value="TutorCentro">Tutor Centro</option>
                                     </select>
@@ -57,8 +54,7 @@
                             <div class="col">
                                 <div class="mb-3">
 
-                                    <input type="file" (change)="getFile($event)"
-                                        formControlName="archivo" id="file" />
+                                    <input type="file" (change)="getFile($event)" formControlName="archivo" id="file" />
                                 </div>
                             </div>
                         </div>

@@ -17,7 +17,11 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    if(!this.authService.isAutenticated()){
     this.loginForm = this.createFormGroup();
+    }else{
+      window.location.href = "/";
+    }
   }
 
   createFormGroup(): FormGroup {

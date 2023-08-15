@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AppComponent } from 'src/app/app.component';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -24,6 +23,7 @@ export class RecoveryComponent implements OnInit{
   }
 
   recovery(): void {
+    console.log("hola")
     this.authService.recoveryPassword(this.recoveryForm.value).subscribe(
       (error) => {
         console.log(error);

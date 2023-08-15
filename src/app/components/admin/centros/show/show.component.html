@@ -1,0 +1,50 @@
+<div class="bg-white w-full overflow-hidden rounded-lg shadow-xs rounded">
+    <div class="w-full overflow-x-auto py-5 px-5">
+        <span>Nombre: </span><span> {{ centro.Nombre }}</span>
+        <br>
+        <span>Direccion: </span><span> {{ centro.Direccion }}</span>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <span>Correo Electronico: </span><span> {{ centro.CorreoElectronico }}</span>
+            </div>
+            <div class="col-md-6">
+                <span>Telefono: </span><span> {{ centro.Telefono }}</span>
+            </div>
+        </div>
+        <br>
+
+        <hr>
+        <br>
+        <table class="w-full whitespace-no-wrap w-100">
+            <thead>
+                <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                    <th class="px-4 py-3">Nº</th>
+                    <th class="px-4 py-3">Nombre</th>
+                    <th class="px-4 py-3">Direccion</th>
+                    <th class="px-4 py-3">Correo Electronico</th>
+                    <th class="px-4 py-3">Telefono</th>
+                    <th class="px-4 py-3">Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                <tr *ngFor="let usuario of usuarios$ | async; let i = index" class="text-gray-700 dark:text-gray-400 py-4 border-bottom">
+                    <td class="px-4 py-3">{{ i + 1 }}</td>
+                    <td class="px-4 py-3">{{ usuario.Nombre }}</td>
+                    <td class="px-4 py-3">{{ usuario.Apellido }}</td>
+                    <td class="px-4 py-3">{{ usuario.CorreoElectronico }}</td>
+                    <td class="px-4 py-3">{{ usuario.TipoUsuario }}</td>
+                    <td class="px-4 py-3">
+                        <button mat-icon-button>
+                            <mat-icon color="primary">edit</mat-icon>
+                        </button>
+                        <button mat-icon-button>
+                            <mat-icon color="warn">delete</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+
+        </table>
+
+    </div>
+</div>

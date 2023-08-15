@@ -43,4 +43,17 @@ export class CentrosService {
       catchError(this.errorHandlerService.handleError<Centro>("getById centro"))
     );
   }
+
+  delete(id: number): Observable<Centro> {
+    return this.http.delete<Centro>(`${this.url}/delete/${id}`).pipe(
+      catchError(this.errorHandlerService.handleError<Centro>("delete centro"))
+    );
+  }
+
+  obtenerAlumnos(id: number): Observable<User[]> {
+    return this.http.get<User[]>(`${this.url}/getAlumnosCentro/${id}`).pipe(
+      catchError(this.errorHandlerService.handleError<User[]>("getAlumnos centro", []))
+    );
+  }
+
 }

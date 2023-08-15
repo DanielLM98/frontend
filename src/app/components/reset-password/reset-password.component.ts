@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { param } from 'express-validator';
 import { CookieService } from 'ngx-cookie-service';
 import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
@@ -23,6 +22,7 @@ export class ResetPasswordComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.cookieService.set("token", params['token']);
+      localStorage.setItem("token", params['token']);
     });
     this.resetForm = this.createFormGroup();
   }
@@ -45,6 +45,7 @@ export class ResetPasswordComponent implements OnInit {
 
       });
     this.cookieService.delete("token");
+    localStorage.removeItem("token");
   }
 
 

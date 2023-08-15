@@ -31,14 +31,14 @@ export class AuthService implements OnInit {
   constructor(private http: HttpClient, private errorHandlerService: ErrorHandlerService, private router: Router, private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    if (this.cookieService.get("token")) {
+    if (localStorage.getItem("token")) {
       this.isUserLoggedIn$.next(true);
     }
   }
 
   isAutenticated(): boolean {
-    if (this.cookieService.get("token")) {
-      let decoded = jwt_decode(this.cookieService.get("token")!) as any;
+    if (this.cookieService.get("token") || localStorage.getItem("token")) {
+      let decoded = jwt_decode(localStorage.getItem("token")!) as any;
       if (decoded.exp < Date.now() / 1000) {
 
         return false
@@ -54,7 +54,7 @@ export class AuthService implements OnInit {
 
     return this._user;
   }
-  signup(user: Omit<User, "id">): Observable<User> {
+  signup(user: Omit<User, "ID">): Observable<User> {
     user.Estado = "Activo";
     user.TipoUsuario = "Usuario";
     console.log(user)
@@ -81,17 +81,10 @@ export class AuthService implements OnInit {
           this.cookieService.set("user", JSON.stringify(this._user));
           localStorage.setItem("token", tokenObject.token);
           this.isUserLoggedIn$.next(true);
-          this.router.navigate(["/"]);
+          this.router.navigate([""]);
         }),
         catchError(this.errorHandlerService.handleError<{ token: string, userSession: User, userId: number }>("login"))
       );
-  }
-
-  logout(): void {
-    this.cookieService.delete("token");
-    this.cookieService.delete("user");
-    this.isUserLoggedIn$.next(false);
-    this.router.navigate(['login']);
   }
 
   resetPassword(password: String): Observable<User> {
@@ -109,6 +102,4 @@ export class AuthService implements OnInit {
     );
      
   }
-
-
 }

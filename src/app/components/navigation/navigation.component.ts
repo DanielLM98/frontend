@@ -13,9 +13,7 @@ export class NavigationComponent {
 
 
   ngOnInit(): void {
-    this.authService.isUserLoggedIn$.subscribe((isLoggedIn) => {
-      this.isAutenticated = isLoggedIn;
-    });
+    this.isAutenticated=this.authService.isAutenticated();
   }
   logout(): void {
     localStorage.removeItem('token');

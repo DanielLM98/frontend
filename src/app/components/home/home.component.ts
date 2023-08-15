@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     let rol = JSON.parse(this.cookieService.get("user")).tipoUsuario;
 
     if(rol === "Administrador"){
-      this.router.navigate(['admin']);
+      this.router.navigate(['admin/centros']);
     }
     else{
       this.formularios$ = this.formulariosService.getFormulariosbyRol(rol);
