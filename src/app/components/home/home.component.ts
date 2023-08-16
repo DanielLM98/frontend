@@ -17,17 +17,34 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let rol = JSON.parse(this.cookieService.get("user")).tipoUsuario;
+    let rol = JSON.parse(this.cookieService.get("user")).TipoUsuario;
 
     if(rol === "Administrador"){
-      this.router.navigate(['admin/centros']);
+      this.router.navigate(['admin/usuarios']);
     }
     else{
       this.formularios$ = this.formulariosService.getFormulariosbyRol(rol);
       console.log(this.formularios$)
+
     }
 
   }
+
+ downloadFile(id:number) {
+  this.formulariosService.downloadFile(id).subscribe(
+    (data) => {
+      console.log(data)
+      const link = document.getElementById("downloadLink")
+      if( link instanceof HTMLAnchorElement){
+        link.href = 'http://localhost:3000/' + data;
+        link.target = "_blank"
+        link.click();
+      }
+      document.createElement('a').href
+      this.router.navigate(['http://localhost:3000/'+data]);
+    }
+  )
+ }
 
 
 }

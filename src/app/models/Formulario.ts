@@ -4,4 +4,5 @@ export interface Formulario {
     Descripcion: string;
     Campos: string;
     Rol: string;
+    Archivo: string;
 }

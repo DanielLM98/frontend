@@ -28,11 +28,15 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { SignformComponent } from './components/signform/signform.component';
 import { RecoveryComponent } from './components/recovery/recovery.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+
+//admin
 import { UsuariosComponent } from './components/admin/usuarios/usuarios.component';
 import { FormUsuariosComponent } from './components/admin/usuarios/form-usuarios/form-usuarios.component';
 import { CentrosComponent } from './components/admin/centros/centros.component';
 import { FormCentrosComponent } from './components/admin/centros/form-centros/form-centros.component';
 import { ShowCentrosComponent } from './components/admin/centros/show/show.component';
+import { FormulariosComponent } from './components/admin/formularios/formularios.component';
+import { FormFormulariosComponent } from './components/admin/formularios/form-formularios/form-formularios.component';
 
 
 
@@ -54,6 +58,8 @@ import { ShowCentrosComponent } from './components/admin/centros/show/show.compo
     CentrosComponent,
     FormCentrosComponent,
     ShowCentrosComponent,
+    FormulariosComponent,
+    FormFormulariosComponent,
   ],
   imports: [
     BrowserModule,

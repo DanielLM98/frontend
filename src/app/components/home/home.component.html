@@ -24,16 +24,15 @@
 
 
                     <td class="px-4 py-3">
-                        <a routerLink="/admin/centros/{{formularios.ID}}/edit">
+                        <a routerLink="form/{{formularios.ID}}/rellenar">
                         <button mat-icon-button>
                             <mat-icon color="primary">edit</mat-icon>
                         </button>
                     </a>
-                    <a routerLink="/admin/centros/{{formularios.ID}}/delete">
-                        <button mat-icon-button>
+                    <a id="downloadLink" style="display: none;"></a>
+                        <button mat-icon-button id="download" (click)="downloadFile(formularios.ID)">
                             <mat-icon color="green">search</mat-icon>
                         </button>
-                    </a>
                     </td>
                 </tr>
             </tbody>

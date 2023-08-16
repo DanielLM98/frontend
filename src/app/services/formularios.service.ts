@@ -39,6 +39,7 @@ export class FormulariosService {
   }
 
 
+  
 
 
 
@@ -65,5 +66,10 @@ export class FormulariosService {
     return this.http.get<Formulario[]>(`${this.url}/getbyrol/${rol}`, this.httpOptions).pipe(
       catchError(this.errorHandlerService.handleError<Formulario[]>("getFormulariosbyRol", []))
     );
+  }
+
+  downloadFile(id: number): Observable<any>{
+    return this.http.get(`${this.url}/rellenar/${id}`, this.httpOptions).pipe(
+      catchError(this.errorHandlerService.handleError<any>("downloadFile", "")));
   }
 }

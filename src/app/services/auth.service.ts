@@ -37,8 +37,8 @@ export class AuthService implements OnInit {
   }
 
   isAutenticated(): boolean {
-    if (this.cookieService.get("token") || localStorage.getItem("token")) {
-      let decoded = jwt_decode(localStorage.getItem("token")!) as any;
+    if (this.cookieService.get("token")) {
+      let decoded = jwt_decode(this.cookieService.get("token")!) as any;
       if (decoded.exp < Date.now() / 1000) {
 
         return false
@@ -81,7 +81,7 @@ export class AuthService implements OnInit {
           this.cookieService.set("user", JSON.stringify(this._user));
           localStorage.setItem("token", tokenObject.token);
           this.isUserLoggedIn$.next(true);
-          this.router.navigate([""]);
+          
         }),
         catchError(this.errorHandlerService.handleError<{ token: string, userSession: User, userId: number }>("login"))
       );

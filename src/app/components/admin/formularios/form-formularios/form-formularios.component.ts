@@ -4,8 +4,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Formulario } from 'src/app/models/Formulario';
 import { FormulariosService } from 'src/app/services/formularios.service';
-import DOMPurify from 'dompurify';
-
+import * as DOMPurify from 'dompurify';
 
 @Component({
   selector: 'app-form-formularios',

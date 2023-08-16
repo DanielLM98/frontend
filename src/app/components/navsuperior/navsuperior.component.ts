@@ -31,6 +31,6 @@ export class NavsuperiorComponent {
     localStorage.removeItem('token');
     this.cookieService.deleteAll();
     this.authService.isUserLoggedIn$.next(false);
-    this.router.navigate(['login']);
+    window.location.reload();
   }
 }

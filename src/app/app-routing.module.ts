@@ -11,27 +11,31 @@ import { FormUsuariosComponent } from './components/admin/usuarios/form-usuarios
 import { CentrosComponent } from './components/admin/centros/centros.component';
 import { FormCentrosComponent } from './components/admin/centros/form-centros/form-centros.component';
 import { ShowCentrosComponent } from './components/admin/centros/show/show.component';
+import { FormulariosComponent } from './components/admin/formularios/formularios.component';
+import { FormFormulariosComponent } from './components/admin/formularios/form-formularios/form-formularios.component';
 
 const routes: Routes = [
-  { path: "", component: HomeComponent, canActivate: [AuthGuardService]},
-  { path: "login", component: LoginComponent},
-  { path: "recovery", component: RecoveryComponent},
-  { path: "resetPassword", component: ResetPasswordComponent},
+  { path: "", component: HomeComponent, canActivate: [AuthGuardService] },
+  { path: "login", component: LoginComponent },
+  { path: "recovery", component: RecoveryComponent },
+  { path: "resetPassword", component: ResetPasswordComponent },
 
-  { path: "form/:id/rellenar", component: SignformComponent, canActivate: [AuthGuardService]},
+  { path: "form/:id/rellenar", component: SignformComponent, canActivate: [AuthGuardService] },
 
   //admin
-   {path: "admin/usuarios", component: UsuariosComponent, canActivate: [AuthGuardService]},
-   {path: "admin/usuarios/create", component: FormUsuariosComponent, canActivate: [AuthGuardService]},
-   {path: "admin/usuarios/edit/:id", component: FormUsuariosComponent, canActivate: [AuthGuardService]},
+  { path: "admin/usuarios", component: UsuariosComponent, canActivate: [AuthGuardService] },
+  { path: "admin/usuarios/create", component: FormUsuariosComponent, canActivate: [AuthGuardService] },
+  { path: "admin/usuarios/edit/:id", component: FormUsuariosComponent, canActivate: [AuthGuardService] },
+  { path: "admin/formularios/", component: FormulariosComponent, canActivate: [AuthGuardService]},
+  { path: "admin/formularios/create", component: FormFormulariosComponent, canActivate: [AuthGuardService]},
+  { path: "admin/formularios/edit/:id", component: FormFormulariosComponent, canActivate: [AuthGuardService]},
+  { path: "admin/centros", component: CentrosComponent, canActivate: [AuthGuardService] },
+  { path: "admin/centros/create", component: FormCentrosComponent, canActivate: [AuthGuardService] },
+  { path: "admin/centros/:id/edit", component: FormCentrosComponent, canActivate: [AuthGuardService] },
+  { path: "admin/centros/:id/show", component: ShowCentrosComponent, canActivate: [AuthGuardService] },
+  { path: "**", redirectTo: "" }
 
-    {path: "admin/centros", component: CentrosComponent, canActivate: [AuthGuardService]},
-    {path: "admin/centros/create", component: FormCentrosComponent, canActivate: [AuthGuardService]},
-    {path: "admin/centros/:id/edit", component: FormCentrosComponent, canActivate: [AuthGuardService]},
-    {path: "admin/centros/:id/show", component: ShowCentrosComponent, canActivate: [AuthGuardService]},
-  { path: "**", redirectTo: ""}
 
-  
 ];
 
 @NgModule({

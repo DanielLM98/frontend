@@ -38,6 +38,8 @@ export class LoginComponent implements OnInit {
       (data) => {
         if(data==undefined){
           this.errorMessage = "Correo o contraseña incorrectos";
+        }else{
+          window.location.href = "/";
         }
       }
     );
