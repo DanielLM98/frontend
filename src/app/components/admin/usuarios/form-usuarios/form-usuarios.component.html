@@ -52,12 +52,11 @@
                                         <option value="Alumno" selected>Alumno</option>
                                         <option value="Tutorc">Tutor Centro</option>
                                         <option value="Tutorp">Tutor Practicas</option>
-                                        <option value="Administrador">Administrador</option>
+                                        <option *ngIf="userAdmin" value="Administrador">Administrador</option>
                                         <option value="AdministradorCentro">Administrador del Centro</option>
                                     </select>
                                 </div>
                             </div>
-
                             <button color="primary" class="w-100" [disabled]="!userForm.valid" mat-raised-button type="submit"><span>Editar empresa</span></button>
 
                         </form>

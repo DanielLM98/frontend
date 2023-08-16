@@ -53,12 +53,13 @@ export class SignformComponent implements OnInit {
     });
     console.log(this.formulario)
     console.log(JSON.parse(this.cookieService.get('user')))
-    this.formulariosService.rellenar(JSON.parse(this.cookieService.get('user')).id, this.formulario.ID, JSON.stringify(this.signForm.value)).subscribe(
+    this.formulariosService.rellenar(JSON.parse(this.cookieService.get('user')).ID, this.formulario.ID, JSON.stringify(this.signForm.value)).subscribe(
       (data) => {
         console.log(data)
+      }, (error) => {
+        console.log(error)
       }
     )
-
     console.log(this.signForm.value)  }
 
 

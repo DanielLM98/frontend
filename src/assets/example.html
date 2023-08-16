@@ -1,18 +1,155 @@
     <div class="row">
-        <div class="col">
+        <div class="col-lg-6">
             <div class="mb-3">
-                <label class="form-label">Nombre</label>
-                <input class="form-control" type="text" placeholder="Nombre"
-                    >
+                <label class="form-label">Nombre del Alumno</label>
+                <input class="form-control" type="text" placeholder="Nombre" formControlName="NombreAlumno">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <label class="form-label">Nombre Ciclo Formativo</label>
+                <input class="form-control" type="textarea" placeholder="NombreCiclo" formControlName="NombreCiclo">
             </div>
         </div>
     </div>
             
     <div class="row">
-        <div class="col">
+        <div class="col-lg-6">
             <div class="mb-3">
-                <label class="form-label">Descripción</label>
-                <input class="form-control" type="textarea" placeholder="Descripción">
+                <label class="form-label">Curso Academico</label>
+                <input class="form-control" type="textarea" formControlName="CursoAcademico">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <label class="form-label">Periodo Realización</label>
+                <select class="form-control" formControlName="PeriodoRealizacion">
+                    <option value="Primer Trimestre" selected>Primer Trimestre</option>
+                    <option value="Segundo Trimestre">Segundo Trimestre</option>
+                    <option value="Tercer Trimestre" >Tercer Trimestre</option>
+                </select>
+            </div>
+        </div>
+       
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <label class="form-label">Posibilidades formativas que ofrece la empresa</label>
+                <select class="form-control" formControlName="opcion1">
+                    <option value="1" selected>1=Poco</option>
+                    <option value="2">2</option>
+                    <option value="3" >3</option>
+                    <option value="4" >4</option>
+                    <option value="5" >5=Mucho</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <label class="form-label">Cumplimiento del programa formativo por parte de la empresa</label>
+                <select class="form-control" formControlName="opcion2">
+                    <option value="1" selected>1=Poco</option>
+                    <option value="2">2</option>
+                    <option value="3" >3</option>
+                    <option value="4" >4</option>
+                    <option value="5" >5=Mucho</option>
+                </select>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <label class="form-label">Seguimiento del alumno realizado por el tutor/a del centro de trabajo</label>
+                <select class="form-control" formControlName="opcion3">
+                    <option value="1" selected>1=Poco</option>
+                    <option value="2">2</option>
+                    <option value="3" >3</option>
+                    <option value="4" >4</option>
+                    <option value="5" >5=Mucho</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <label class="form-label">Seguimiento hecho por su profesor/a</label>
+                <select class="form-control" formControlName="opcion4">
+                    <option value="1" selected>1=Poco</option>
+                    <option value="2">2</option>
+                    <option value="3" >3</option>
+                    <option value="4" >4</option>
+                    <option value="5" >5=Mucho</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <label class="form-label">Posibilidades laborales que ofrece la empresa al alumnado que
+                     finaliza la fase de formación en centros de trabajo</label>
+                <select class="form-control" formControlName="opcion5">
+                    <option value="1" selected>1=Poco</option>
+                    <option value="2">2</option>
+                    <option value="3" >3</option>
+                    <option value="4" >4</option>
+                    <option value="5" >5=Mucho</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <label class="form-label">Adecuación de la formación recibida en el centro docente con las practicas realizadas</label>
+                <select class="form-control" formControlName="opcion6">
+                    <option value="1" selected>1=Poco</option>
+                    <option value="2">2</option>
+                    <option value="3" >3</option>
+                    <option value="4" >4</option>
+                    <option value="5" >5=Mucho</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <label class="form-label">Nivel de satisfacción mostrado con la empresa por el profesor/a responsable del seguimiento</label>
+                <select class="form-control" formControlName="opcion7">
+                    <option value="1" selected>1=Poco</option>
+                    <option value="2">2</option>
+                    <option value="3" >3</option>
+                    <option value="4" >4</option>
+                    <option value="5" >5=Mucho</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <label class="form-label">Valoración general de las prácticas por el profesor/a responsable del seguimiento</label>
+                <select class="form-control" formControlName="opcion8">
+                    <option value="1" selected>1=Poco</option>
+                    <option value="2">2</option>
+                    <option value="3" >3</option>
+                    <option value="4" >4</option>
+                    <option value="5" >5=Mucho</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <label class="form-label">Aspectos a mejorar de la fase de formación en centros de trabajo</label>
+                <textarea class="form-control" placeholder="Nombre" formControlName="AspectosMejorar"></textarea>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <label class="form-label">Aspectos a destacar de la fase de formación en centros de trabajo</label>
+                <textarea class="form-control" placeholder="AspectosDestacar" formControlName="AspectosDestacar"></textarea>
+            </div>
+        </div>
+    </div>
+
+

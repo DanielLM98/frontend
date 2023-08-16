@@ -31,6 +31,7 @@ export class FormulariosService {
   }
   rellenar(userID:number, formID: number, signForm: string) {
     let test = { "IDUsuario": userID, "IDFormulario": formID, "Respuestas": signForm}
+    console.log(test)
     return this.http.post(`http://localhost:3000/respuestas/create/`, test).pipe(
       first(),
       catchError(this.errorHandlerService.handleError<any>("rellenar Formulario"))
