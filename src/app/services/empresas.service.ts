@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, first } from 'rxjs';
 import { Empresa } from '../models/Empresa';
 import { ErrorHandlerService } from './error-handler.service';
+import { Tutorestrabajo } from '../models/Tutorestrabajo';
+import { User } from '../models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -38,4 +40,17 @@ export class EmpresasService {
       catchError(this.errorHandlerService.handleError<Empresa>("getById empresa"))
     );
   }
+
+  delete(id: number): Observable<Empresa> {
+    return this.http.delete<Empresa>(`${this.url}/delete/${id}`).pipe(
+      first(),
+      catchError(this.errorHandlerService.handleError<Empresa>("delete empresa"))
+    );
   }
+
+  fetchTutoresEmpresa(id: number): Observable<User[]> {
+    return this.http.get<User[]>(`${this.url}/getTutoresEmpresa/${id}`).pipe(
+      catchError(this.errorHandlerService.handleError<User[]>("getTutoresEmpresa"))
+    );
+  }
+}

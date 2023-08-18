@@ -37,6 +37,7 @@ import { FormCentrosComponent } from './components/admin/centros/form-centros/fo
 import { ShowCentrosComponent } from './components/admin/centros/show/show.component';
 import { FormulariosComponent } from './components/admin/formularios/formularios.component';
 import { FormFormulariosComponent } from './components/admin/formularios/form-formularios/form-formularios.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 
@@ -50,6 +51,7 @@ import { FormFormulariosComponent } from './components/admin/formularios/form-fo
     SignformComponent,
     RecoveryComponent,
     ResetPasswordComponent,
+    ProfileComponent,
 
     //admin
 

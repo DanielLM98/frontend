@@ -14,6 +14,8 @@ export class UsuariosService {
   constructor(private http: HttpClient, private errorHandlerService: ErrorHandlerService) { }
   
 
+
+
   fetchAll(): Observable<User[]> {
     return this.http.get<User[]>(this.url).pipe(
       catchError(this.errorHandlerService.handleError<User[]>("getAll Users", []))
@@ -43,6 +45,10 @@ export class UsuariosService {
     return this.http.get<User[]>(`${this.url}/getByCentro/${id}`).pipe(
       catchError(this.errorHandlerService.handleError<User[]>("getById User"))
     );
+  }
+
+  createAlumno(idUser:number, idCentro:number): void {
+    this.http.post
   }
 
   

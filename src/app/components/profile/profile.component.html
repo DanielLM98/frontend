@@ -1,0 +1,18 @@
+<div class=" w-full overflow-hidden rounded-lg shadow-xs">
+
+    <div class="w-full overflow-x-auto">
+        <h1>Perfil de Usuario</h1>
+        <div class="container my-5">
+            <div class="w-full whitespace-no-wrap w-100 ">
+                <h3>Datos Personales</h3>
+                <p><strong>Nombre:</strong> {{user.Nombre}}</p>
+                <p><strong>Apellidos:</strong> {{user.Apellido}}</p>
+                <p><strong>Correo Electrónico:</strong> {{user.CorreoElectronico}}</p>
+            </div>
+            <hr>
+
+            <button class="btn btn-primary mx-2" routerLink="/perfil/editar">Editar</button>
+            <button class="btn btn-primary" routerLink="/perfil/cambiar-contrasena">Cambiar Contraseña</button>
+        </div>
+    </div>
+</div>

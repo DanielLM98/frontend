@@ -13,14 +13,15 @@ import { FormCentrosComponent } from './components/admin/centros/form-centros/fo
 import { ShowCentrosComponent } from './components/admin/centros/show/show.component';
 import { FormulariosComponent } from './components/admin/formularios/formularios.component';
 import { FormFormulariosComponent } from './components/admin/formularios/form-formularios/form-formularios.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent, canActivate: [AuthGuardService] },
   { path: "login", component: LoginComponent },
   { path: "recovery", component: RecoveryComponent },
   { path: "resetPassword", component: ResetPasswordComponent },
-
   { path: "form/:id/rellenar", component: SignformComponent, canActivate: [AuthGuardService] },
+  { path: "perfil", component: ProfileComponent, canActivate: [AuthGuardService]},
 
   //admin
   { path: "admin/usuarios", component: UsuariosComponent, canActivate: [AuthGuardService] },

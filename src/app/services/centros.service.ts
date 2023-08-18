@@ -56,4 +56,10 @@ export class CentrosService {
     );
   }
 
+  fetchTutoresEmpresa(id: number): Observable<User[]> {
+    return this.http.get<User[]>(`${this.url}/getTutoresCentro/${id}`).pipe(
+      catchError(this.errorHandlerService.handleError<User[]>("getTutores centro", []))
+    );
+  }
+
 }
