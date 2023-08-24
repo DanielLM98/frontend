@@ -19,7 +19,7 @@
                 </tr>
             </thead>
             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                <tr *ngFor="let centro of centros$ | async; let i = index" class="text-gray-700 dark:text-gray-400">
+                <tr *ngFor="let centro of centroObs$ | async; let i = index" class="text-gray-700 dark:text-gray-400">
 
                     <td class="px-4 py-3">{{ i + 1 }}</td>
                     <td class="px-4 py-3">{{ centro.Nombre }}</td>
@@ -50,5 +50,14 @@
                 </tr>
             </tbody>
         </table>
+        <div class="pagination-container">
+            <button mat-icon-button (click)="prevPage()" [disabled]="page === 1">
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+            <span class="page-info">{{ page }} de {{ totalPages }}</span>
+            <button mat-icon-button (click)="nextPage()" [disabled]="page === totalPages">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+        </div>
     </div>
 </div>

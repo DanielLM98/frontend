@@ -42,14 +42,20 @@ export class EmpresasService {
   }
 
   delete(id: number): Observable<Empresa> {
-    return this.http.delete<Empresa>(`${this.url}/delete/${id}`).pipe(
+    return this.http.delete<Empresa>(`${this.url}/${id}/delete`).pipe(
       first(),
       catchError(this.errorHandlerService.handleError<Empresa>("delete empresa"))
     );
   }
 
+  fetchAlumnosEmpresa(id: number): Observable<User[]> {
+    return this.http.get<User[]>(`${this.url}/${id}/alumnos`).pipe(
+      catchError(this.errorHandlerService.handleError<User[]>("getAlumnosEmpresa"))
+    );
+  }
+
   fetchTutoresEmpresa(id: number): Observable<User[]> {
-    return this.http.get<User[]>(`${this.url}/getTutoresEmpresa/${id}`).pipe(
+    return this.http.get<User[]>(`${this.url}/${id}/tutores`).pipe(
       catchError(this.errorHandlerService.handleError<User[]>("getTutoresEmpresa"))
     );
   }

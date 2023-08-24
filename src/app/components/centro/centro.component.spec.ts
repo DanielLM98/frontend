@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RecoveryComponent } from './recovery.component';
+import { CentroComponent } from './centro.component';
 
-describe('RecoveryComponent', () => {
-  let component: RecoveryComponent;
-  let fixture: ComponentFixture<RecoveryComponent>;
+describe('CentroComponent', () => {
+  let component: CentroComponent;
+  let fixture: ComponentFixture<CentroComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RecoveryComponent]
+      declarations: [CentroComponent]
     });
-    fixture = TestBed.createComponent(RecoveryComponent);
+    fixture = TestBed.createComponent(CentroComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

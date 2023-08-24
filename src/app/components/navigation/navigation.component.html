@@ -1,26 +1,26 @@
-<nav *ngIf="isAutenticated"
-    class="navbar navbar-dark align-items-start sidebar sidebar-dark bg-gradient-primary p-0"
-    style="background: rgb(75,148,84);">
+<nav *ngIf="isAutenticated" class="navbar navbar-dark align-items-start sidebar sidebar-dark bg-gradient-primary p-0" style="background: rgb(75,148,84);">
     <div class="container-fluid d-flex flex-column p-0">
-        <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0 my-3" href="#"><img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Emblema_de_la_Junta_de_Andaluc%C3%ADa_2020.svg/1200px-Emblema_de_la_Junta_de_Andaluc%C3%ADa_2020.svg.png"
-                width="65 em" height="65 em" />
+        <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0 my-3" href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Emblema_de_la_Junta_de_Andaluc%C3%ADa_2020.svg/1200px-Emblema_de_la_Junta_de_Andaluc%C3%ADa_2020.svg.png" width="65 em" height="65 em" />
             <div class="sidebar-brand-icon rotate-n-15"></div>
         </a>
         <hr class="sidebar-divider my-0" />
         <ul id="accordionSidebar" class="navbar-nav text-light">
             <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/"><i
                         class="fas fa-tachometer-alt"></i><span>Inicio</span></a></li>
-            <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="admin/centros/"><i
+            <li *ngIf="isAdmin" class="nav-item">
+                <a class="nav-link" routerLinkActive="active" routerLink="admin/centros/"><i
                         class="fa fa-user"></i><span>Centros</span></a></li>
-            <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="admin/formularios/"><i class="fa fa-table"
-                        routerLink="admin/formularios"></i><span>Formularios</span></a></li>
-            <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="admin/empresas/"><i class="fa fa-table"
-                        routerLink="admin/empresas"></i><span>Empresas</span></a></li>
-            <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="admin/usuarios/"><i class="fa fa-user"
-                        routerLink="admin/usuarios"></i><span>Usuarios</span></a></li>
-
+            <li *ngIf="isAdmin" class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="admin/formularios/"><i class="fa fa-table"
+                       ></i><span>Formularios</span></a></li>
+            <li *ngIf="isAdmin || isAdminCentro" class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="admin/empresas/"><i class="fa fa-table"
+                       ></i><span>Empresas</span></a></li>
+            <li *ngIf="isAdmin" class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="admin/usuarios/"><i class="fa fa-user"
+                        ></i><span>Usuarios</span></a></li>
+            <li *ngIf="isAlumno || isTutorCentro" class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="centros/"><i class="fa fa-user"
+                            ></i><span>Centro</span></a></li>
+            <li *ngIf="isAlumno || isTutorEmpresa" class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="empresas/"><i class="fa fa-user"
+                               ></i><span>Empresa</span></a></li>
         </ul>
-        
+
     </div>
 </nav>

@@ -44,6 +44,15 @@
                                 </div>
                             </div>
                         </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <span>Selecciona un centro</span>
+                                    <select class="form-control" id="Centro" formControlName="Centro">
+                                            <option value="0" selected>Selecciona un Centro</option>
+                                            <option *ngFor="let centro of centros$ | async" [value]="centro.ID">{{centro.Nombre}}</option>
+                                        </select>
+                                </div>
+                            </div>
                         <button color="primary" class="w-100" [disabled]="!empresasForm.valid" mat-raised-button
                         type="submit"><span>Editar empresa</span></button>
                     </form>
@@ -88,6 +97,15 @@
                                     </div>
                                 </div>
                             </div>
+                                <div class="row">
+                                    <div class="mb-3">
+                                        <span>Selecciona un centro</span>
+                                        <select class="form-control" id="Centro"  formControlName="Centro">
+                                                <option value="0" selected>Selecciona un Centro</option>
+                                                <option *ngFor="let centro of centros$ | async" [value]="centro.ID">{{centro.Nombre}}</option>
+                                            </select>
+                                    </div>
+                                </div>
                             <button color="primary" class="w-100" [disabled]="!empresasForm.valid" mat-raised-button
                             type="submit"><span>Crear empresa</span></button>
                         </form>

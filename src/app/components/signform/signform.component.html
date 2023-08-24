@@ -2,17 +2,30 @@
     <div class="row mb-3">
         <div class="col-lg-12">
             <mat-card>
-                <mat-card-header>
-                    <mat-card-title>Responder Formulario</mat-card-title>
-                </mat-card-header>
-                <div class="card-body mx-3 mb-3">
+
+                <div *ngIf="!editando; else edit" class="card-body mx-3 mb-3">
+                    <mat-card-header>
+                        <mat-card-title>Responder Formulario</mat-card-title>
+                    </mat-card-header>
                     <form [formGroup]="signForm" (ngSubmit)="onSubmit()" novalidate>
-                        <div #formularioRef id="formulario" ></div>
+                        <div #formularioRef id="formulario"></div>
 
                         <button color="primary" class="w-100" mat-raised-button type="submit"><span>Rellenar</span></button>
                     </form>
                 </div>
 
+                <ng-template #edit>
+                    <mat-card-header>
+                        <mat-card-title>Editar Formulario</mat-card-title>
+                    </mat-card-header>
+                    <div class="card-body mx-3 mb-3">
+                        <form [formGroup]="signForm" (ngSubmit)="onUpdate()" novalidate>
+                            <div #formularioRef id="formulario"></div>
+
+                            <button color="primary" class="w-100" mat-raised-button type="submit"><span>Actualizar</span></button>
+                        </form>
+                    </div>
+                </ng-template>
             </mat-card>
 
         </div>

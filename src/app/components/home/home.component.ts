@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { Formulario } from 'src/app/models/Formulario';
 import { FormulariosService } from 'src/app/services/formularios.service';
+import { RespuestasService } from 'src/app/services/respuestas.service';
+
 
 @Component({
   selector: 'app-home',
@@ -12,24 +14,45 @@ import { FormulariosService } from 'src/app/services/formularios.service';
 })
 export class HomeComponent implements OnInit {
   formularios$!: Observable<Formulario[]>;
+  formRespondidos!: number[];
+  isFormEdit: boolean = false;
+  totalPages: number = 0;
+  page: number = 1;
+  itemsPerPage: number = 4;
+  formulariosArr: Formulario[] = [];
+  formObs$: Observable<any> = new Observable();
 
-  constructor(private formulariosService: FormulariosService, private cookieService: CookieService, private router: Router) { }
+
+
+  constructor(private formulariosService: FormulariosService, private cookieService: CookieService, private router: Router, private respuestasService: RespuestasService) { }
 
   ngOnInit(): void {
 
     let rol = JSON.parse(this.cookieService.get("user")).TipoUsuario;
+    this.respuestasService.getRespuestasbyUser(JSON.parse(this.cookieService.get("user")).ID).subscribe(
+      (data) => {
+        this.formRespondidos = data.map((item: Number) => item);
+        console.log(this.formRespondidos)
+      }
+    )
 
     if (rol === "Administrador") {
       this.router.navigate(['admin/usuarios']);
     }
     else {
       this.formularios$ = this.formulariosService.getFormulariosbyRol(rol);
+      this.cargarDatos();
+
       console.log(this.formularios$)
 
     }
 
   }
 
+  isEdit(id: number) {
+   
+    return this.formRespondidos.includes(id);
+  }
   downloadFile(id: number) {
     this.formulariosService.fetchById(id).subscribe(
       (data) => {
@@ -41,15 +64,58 @@ export class HomeComponent implements OnInit {
             if (link instanceof HTMLAnchorElement) {
               link.href = 'http://localhost:3000/' + data;
               link.target = "_blank";
-              link.click();
               link.download = form.Nombre + ".pdf";
+              link.click();
             }
-            document.createElement('a').href
-            this.router.navigate(['http://localhost:3000/' + data]);
+
           }
         )
       });
   }
+  cargarDatos():void{
+    console.log(this.page)
+    const startIndex = (this.page-1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    console.log(endIndex)
+    this.formularios$.subscribe(
+      (data) => {
+        console.log(data)
+
+        this.formulariosArr = data;
+        this.totalPages = Math.ceil(this.formulariosArr.length / this.itemsPerPage);
+        this.formulariosArr = this.formulariosArr.slice(startIndex, endIndex);
+        this.formObs$ = new Observable((observer) => {
+          observer.next(this.formulariosArr);
+          observer.complete();
+        });
+        console.log(this.formObs$)
+      },
+      (error) => {
+        console.log(error);
+      }
+
+    )
+  }
+  nextPage() {
+    console.log(this.page)
+    console.log(this.totalPages)
+    if (this.page <= this.totalPages) {
+      this.page++;
+      this.cargarDatos();
+      
+    }
+  }
+
+  prevPage() {
+    if (this.page > 0) {
+      this.page--;
+      this.cargarDatos();
+
+    }
+  }
+
+  
+
 
 
 }

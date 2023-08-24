@@ -1,0 +1,74 @@
+<div class="bg-white w-full overflow-hidden rounded-lg shadow-xs rounded">
+    <div class="w-full overflow-x-auto py-5 px-5">
+        <span>Nombre: </span><span> {{ empresa.Nombre }}</span>
+        <br>
+        <span>Direccion: </span><span> {{ empresa.Direccion }}</span>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <span>Correo Electronico: </span><span> {{ empresa.CorreoElectronico }}</span>
+            </div>
+            <div class="col-md-6">
+                <span>Telefono: </span><span> {{ empresa.Telefono }}</span>
+            </div>
+        </div>
+        <br>
+
+        <hr>
+        <br>
+        <button mat-button (click)="alumnos()">
+            Alumnos
+    </button><button mat-button (click)="tutores()">
+        Tutores
+    </button>
+
+        <table class="w-full whitespace-no-wrap w-100">
+            <thead>
+                <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                    <th class="px-4 py-3">Nº</th>
+                    <th class="px-4 py-3">Nombre</th>
+                    <th class="px-4 py-3">Direccion</th>
+                    <th class="px-4 py-3">Correo Electronico</th>
+                    <th class="px-4 py-3">Telefono</th>
+                    <th class="px-4 py-3">Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                <tr *ngFor="let usuario of userObs$ | async; let i = index" class="text-gray-700 dark:text-gray-400">
+
+                    <td class="px-4 py-3">{{ usuario.ID }}</td>
+                    <td class="px-4 py-3">{{ usuario.Nombre }}</td>
+                    <td class="px-4 py-3">{{ usuario.Apellido }}</td>
+                    <td class="px-4 py-3">{{ usuario.CorreoElectronico }}</td>
+                    <td class="px-4 py-3">{{ usuario.TipoUsuario }}</td>
+
+
+
+
+                    <td class="px-4 py-3">
+
+                        <a routerLink="/admin/usuarios/{{usuario.ID}}/edit">
+                            <button mat-icon-button>
+                        <mat-icon color="primary">edit</mat-icon>
+                    </button>
+                        </a>
+                        <a (click)="eliminarUsuario(usuario.ID)">
+                            <button mat-icon-button>
+                        <mat-icon color="warn">delete</mat-icon>
+                    </button>
+                        </a>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination-container">
+            <button mat-icon-button (click)="prevPage()" [disabled]="page === 1">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+            <span class="page-info">{{ page }} de {{ totalPages }}</span>
+            <button mat-icon-button (click)="nextPage()" [disabled]="page === totalPages">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+        </div>
+
+    </div>
+</div>

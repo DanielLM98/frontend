@@ -2,7 +2,7 @@
     <h2 class="text-dark mb-4">Formulario de Usuarios</h2>
     <div class="row mb-3">
         <div class="col-lg-12">
-            <mat-card>
+            <mat-card class="py-3">
 
                 <div *ngIf="ExisteUser; else create" class="card-body mx-3 mb-3">
                     <form [formGroup]="userForm" (ngSubmit)="onUpdate()" novalidate>
@@ -10,12 +10,86 @@
                             <div class="col">
                                 <div class="mb-3">
                                     <label class="form-label">Nombre</label>
-                                    <input class="form-control" type="text" placeholder="{{user.Nombre}}" formControlName="nombre" [(ngModel)]=user.Nombre>
+                                    <input class="form-control" type="text" placeholder="{{user.Nombre}}" formControlName="Nombre" [(ngModel)]=user.Nombre>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Apellidos</label>
+                                        <input class="form-control" type="text" placeholder="Apellidos" formControlName="Apellido" [(ngModel)]="user.Apellido">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Correo Electronico</label>
+                                    <input class="form-control" type="text" placeholder="Correo Electronico" formControlName="CorreoElectronico" [(ngModel)]="user.CorreoElectronico">
                                 </div>
                             </div>
                         </div>
 
-                        <button color="primary" class="w-100" [disabled]="!userForm.valid" mat-raised-button type="submit"><span>Editar empresa</span></button>
+                        <div class="row">
+                            <div class="mb-3">
+                                <label class="form-label">Rol</label>
+                                <select class="form-control" (change)="onChange()" id="TipoUsuario" formControlName="TipoUsuario">
+                                        <option value="" selected>Selecciona un Rol</option>
+                                        <option value="Alumno" selected>Alumno</option>
+                                        <option value="TutorCentro">Tutor Centro</option>
+                                        <option value="TutorTrabajo">Tutor Practicas</option>
+                                        <option *ngIf="userAdmin" value="Administrador">Administrador</option>
+                                        <option value="AdministradorCentro">Administrador del Centro</option>
+                                        
+                                    </select>
+                            </div>
+                        </div>
+
+
+                        <div *ngIf="userRol === 'Alumno' || userRol === 'TutorCentro' || userRol === 'AdministradorCentro'">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <span>Selecciona un centro</span>
+                                    <select class="form-control" id="Centro" (change)="changeCentro()" formControlName="Centro">
+                                            <option value="0" selected>Selecciona un Centro</option>
+                                            <option *ngFor="let centro of centros$ | async" [value]="centro.ID">{{centro.Nombre}}</option>
+                                        </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="userRol ==='Alumno'">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <span>Selecciona un tutor del centro</span>
+                                    <select class="form-control" formControlName="TutorClase">
+                                            <option value="0" selected>Selecciona una Tutor del Centro</option>
+                                            <option *ngFor="let tutor of tutoresClase$ | async" [value]="tutor.ID">{{tutor.Nombre}}</option>
+                                        </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="userRol ==='Alumno' || userRol==='TutorTrabajo'">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <span>Selecciona una empresa</span>
+                                    <select class="form-control" id="Empresa" (change)="changeEmpresa()" formControlName="Empresa">
+                                            <option value="0" selected>Selecciona una Empresa</option>
+                                            <option *ngFor="let empresa of empresas$ | async" [value]="empresa.ID">{{empresa.Nombre}}</option>
+                                        </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="userRol ==='Alumno'">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <span>Selecciona un tutor de la empresa</span>
+                                    <select class="form-control" id="TutorEmpresa" ormControlName="TutorEmpresa">
+                                            <option value="0" selected>Selecciona un tutor de la empresa</option>
+                                            <option *ngFor="let tutor of tutoresEmpresa$ | async" [value]="tutor.ID">{{tutor.Nombre}}</option>
+                                        </select>
+                                </div>
+                            </div>
+                        </div>
+                        <button color="primary" class="w-100" [disabled]="!userForm.valid" mat-raised-button type="submit"><span>Actualizar Usuario</span></button>
                     </form>
                 </div>
 
@@ -32,7 +106,7 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label">Apellidos</label>
-                                        <input class="form-control" type="text" placeholder="Apellidos" formControlName="Apellidos">
+                                        <input class="form-control" type="text" placeholder="Apellidos" formControlName="Apellido">
                                     </div>
                                 </div>
 
@@ -48,10 +122,12 @@
 
                             <div class="row">
                                 <div class="mb-3">
+                                    <label class="form-label">Rol</label>
                                     <select class="form-control" (change)="onChange()" id="TipoUsuario" formControlName="TipoUsuario">
+                                        <option value="" selected>Selecciona un Rol</option>
                                         <option value="Alumno" selected>Alumno</option>
-                                        <option value="Tutorc">Tutor Centro</option>
-                                        <option value="Tutorp">Tutor Practicas</option>
+                                        <option value="TutorCentro">Tutor Centro</option>
+                                        <option value="TutorTrabajo">Tutor Practicas</option>
                                         <option *ngIf="userAdmin" value="Administrador">Administrador</option>
                                         <option value="AdministradorCentro">Administrador del Centro</option>
                                         
@@ -59,7 +135,8 @@
                                 </div>
                             </div>
 
-                            <div *ngIf="userRol === 'Alumno' || userRol === 'Tutorc' || userRol === 'AdministradorCentro'">
+
+                            <div *ngIf="userRol === 'Alumno' || userRol === 'TutorCentro' || userRol === 'AdministradorCentro'">
                                 <div class="row">
                                     <div class="mb-3">
                                         <span>Selecciona un centro</span>
@@ -74,18 +151,18 @@
                                 <div class="row">
                                     <div class="mb-3">
                                         <span>Selecciona un tutor del centro</span>
-                                        <select class="form-control" (change)="changeEmpresa()" id="Empresa" formControlName="Centro">
-                                            <option value="0" selected>Selecciona una Empresa</option>
-                                            <option *ngFor="let empresa of empresas$ | async" [value]="empresa.ID">{{empresa.Nombre}}</option>
+                                        <select class="form-control" formControlName="TutorClase">
+                                            <option value="0" selected>Selecciona una Tutor del Centro</option>
+                                            <option *ngFor="let tutor of tutoresClase$ | async" [value]="tutor.ID">{{tutor.Nombre}}</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                            <div *ngIf="userRol ==='Alumno' || userRol==='Tutorp'">
+                            <div *ngIf="userRol ==='Alumno' || userRol==='TutorTrabajo'">
                                 <div class="row">
                                     <div class="mb-3">
                                         <span>Selecciona una empresa</span>
-                                        <select class="form-control" (change)="changeEmpresa()" id="Empresa" formControlName="Centro">
+                                        <select class="form-control" (change)="changeEmpresa()" id="Empresa" formControlName="Empresa">
                                             <option value="0" selected>Selecciona una Empresa</option>
                                             <option *ngFor="let empresa of empresas$ | async" [value]="empresa.ID">{{empresa.Nombre}}</option>
                                         </select>
@@ -96,19 +173,20 @@
                                 <div class="row">
                                     <div class="mb-3">
                                         <span>Selecciona un tutor de la empresa</span>
-                                        <select class="form-control" (change)="changeEmpresa()" id="Empresa" formControlName="Centro">
-                                            <option value="0" selected>Selecciona una Empresa</option>
-                                            <option *ngFor="let empresa of empresas$ | async" [value]="empresa.ID">{{empresa.Nombre}}</option>
+                                        <select class="form-control" (change)="changeEmpresa()" formControlName="TutorEmpresa">
+                                            <option value="0" selected>Selecciona un tutor de la empresa</option>
+                                            <option *ngFor="let tutor of tutoresEmpresa$ | async" [value]="tutor.ID">{{tutor.Nombre}}</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                            <button color="primary" class="w-100" [disabled]="!userForm.valid" mat-raised-button type="submit"><span>Editar empresa</span></button>
+                            <button color="primary" class="w-100" [disabled]="!userForm.valid" mat-raised-button type="submit"><span>Añadir Usuario</span></button>
 
                         </form>
                     </div>
                 </ng-template>
             </mat-card>
+
 
         </div>
     </div>

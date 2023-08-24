@@ -16,7 +16,6 @@ export class ResetPasswordComponent implements OnInit {
   user!: User
 
   constructor(public route: ActivatedRoute, private cookieService: CookieService, private authService: AuthService) {
-    console.log("ResetPasswordComponent");
   }
 
   ngOnInit(): void {

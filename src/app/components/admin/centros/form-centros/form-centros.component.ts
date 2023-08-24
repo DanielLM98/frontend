@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Centro } from 'src/app/models/Centro';
 import { CentrosService } from 'src/app/services/centros.service';
 
@@ -16,7 +16,7 @@ export class FormCentrosComponent implements OnInit {
   centroId!: number;
   Centro!: Centro;
   ExisteCentro!: boolean;
-  constructor(private centrosService:CentrosService, private route: ActivatedRoute) { }
+  constructor(private centrosService:CentrosService, private route: ActivatedRoute, private router: Router) { }
 
 
   ngOnInit(): void {
@@ -52,12 +52,16 @@ export class FormCentrosComponent implements OnInit {
   onSubmit(): void {
     console.log(this.centrosForm.value)
 
-    this.centrosService.create(this.centrosForm.value).subscribe((msg) => console.log(msg));
+    this.centrosService.create(this.centrosForm.value).subscribe((msg) => {console.log(msg);
+    this.router.navigate(['/admin/centros']);
+  });
   }
 
   onUpdate(): void {
 
-    this.centrosService.update(this.centroId,this.centrosForm.value).subscribe((msg) => console.log(msg));
+    this.centrosService.update(this.centroId,this.centrosForm.value).subscribe((msg) => {console.log(msg);
+      this.router.navigate(['/admin/centros']);
+    });
   }
 
   fetchById(): void {

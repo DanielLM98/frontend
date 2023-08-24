@@ -34,7 +34,6 @@ export class AuthGuardService implements CanActivate {
     }else if(!roles.includes(user.TipoUsuario)){
       this.router.navigate(['']);
     }
-    console.log(user);
 
     return this.authService.isUserLoggedIn$;
 

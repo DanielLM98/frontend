@@ -23,8 +23,6 @@ export class NavsuperiorComponent {
    this.isAutenticated=this.authService.isAutenticated();
 
     this.user = JSON.parse(this.cookieService.get("user"));
-    console.log(this.user);
-
 
   }
   logout(): void {

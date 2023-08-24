@@ -23,7 +23,6 @@ export class RecoveryComponent implements OnInit{
   }
 
   recovery(): void {
-    console.log("hola")
     this.authService.recoveryPassword(this.recoveryForm.value).subscribe(
       (error) => {
         console.log(error);
