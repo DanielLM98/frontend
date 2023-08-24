@@ -20,9 +20,9 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                    <tr *ngFor="let usuario of usuarios$ | async; let i = index" class="text-gray-700 dark:text-gray-400">
+                    <tr *ngFor="let usuario of userObs$ | async; let i = index" class="text-gray-700 dark:text-gray-400">
 
-                        <td class="px-4 py-3">{{ i + 1 }}</td>
+                        <td class="px-4 py-3">{{ usuario.ID }}</td>
                         <td class="px-4 py-3">{{ usuario.Nombre }}</td>
                         <td class="px-4 py-3">{{ usuario.Apellido }}</td>
                         <td class="px-4 py-3">{{ usuario.CorreoElectronico }}</td>
@@ -32,16 +32,29 @@
 
 
                         <td class="px-4 py-3">
-                            <button mat-icon-button>
-                            <mat-icon color="primary">edit</mat-icon>
-                        </button>
-                            <button mat-icon-button>
-                            <mat-icon color="warn">delete</mat-icon>
-                        </button>
-                        </td>
+
+                            <a routerLink="/admin/usuarios/{{usuario.ID}}/edit">
+                                <button mat-icon-button>
+                                <mat-icon color="primary">edit</mat-icon>
+                            </button>
+                            </a>
+                            <a (click)="eliminarUsuario(usuario.ID)">
+                                <button mat-icon-button>
+                                <mat-icon color="warn">delete</mat-icon>
+                            </button>
+                            </a>
                     </tr>
                 </tbody>
             </table>
+            <div class="pagination-container">
+                <button mat-icon-button (click)="prevPage()" [disabled]="page === 1">
+              <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+                <span class="page-info">{{ page }} de {{ totalPages }}</span>
+                <button mat-icon-button (click)="nextPage()" [disabled]="page === totalPages">
+              <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+            </div>
         </div>
     </div>
 </div>

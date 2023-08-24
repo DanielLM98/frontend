@@ -51,13 +51,13 @@ export class CentrosService {
   }
 
   obtenerAlumnos(id: number): Observable<User[]> {
-    return this.http.get<User[]>(`${this.url}/getAlumnosCentro/${id}`).pipe(
+    return this.http.get<User[]>(`${this.url}/${id}/alumnos`).pipe(
       catchError(this.errorHandlerService.handleError<User[]>("getAlumnos centro", []))
     );
   }
 
-  fetchTutoresEmpresa(id: number): Observable<User[]> {
-    return this.http.get<User[]>(`${this.url}/getTutoresCentro/${id}`).pipe(
+  fetchTutoresCentro(id: number): Observable<User[]> {
+    return this.http.get<User[]>(`${this.url}/${id}/tutores`).pipe(
       catchError(this.errorHandlerService.handleError<User[]>("getTutores centro", []))
     );
   }

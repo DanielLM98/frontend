@@ -81,7 +81,7 @@ export class AuthService implements OnInit {
           this.cookieService.set("user", JSON.stringify(this._user));
           localStorage.setItem("token", tokenObject.token);
           this.isUserLoggedIn$.next(true);
-          
+
         }),
         catchError(this.errorHandlerService.handleError<{ token: string, userSession: User, userId: number }>("login"))
       );
@@ -100,6 +100,8 @@ export class AuthService implements OnInit {
       first<any>(),
       catchError(this.errorHandlerService.handleError<User>("recoveryPassword"))
     );
-     
   }
+  
+
+  
 }

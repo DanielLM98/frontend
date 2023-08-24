@@ -29,14 +29,8 @@ export class FormulariosService {
       catchError(this.errorHandlerService.handleError<Formulario>("create Formulario"))
     );
   }
-  rellenar(userID:number, formID: number, signForm: string) {
-    let test = { "IDUsuario": userID, "IDFormulario": formID, "Respuestas": signForm}
-    console.log(test)
-    return this.http.post(`http://localhost:3000/respuestas/create/`, test).pipe(
-      first(),
-      catchError(this.errorHandlerService.handleError<any>("rellenar Formulario"))
-    );
-  }
+  
+ 
 
 
   
@@ -72,4 +66,6 @@ export class FormulariosService {
     return this.http.get(`${this.url}/rellenar/${id}`, this.httpOptions).pipe(
       catchError(this.errorHandlerService.handleError<any>("downloadFile", "")));
   }
+
+
 }

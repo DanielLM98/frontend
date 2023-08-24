@@ -38,6 +38,12 @@ import { ShowCentrosComponent } from './components/admin/centros/show/show.compo
 import { FormulariosComponent } from './components/admin/formularios/formularios.component';
 import { FormFormulariosComponent } from './components/admin/formularios/form-formularios/form-formularios.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CentroComponent } from './components/centro/centro.component';
+import { EmpresaComponent } from './components/empresa/empresa.component';
+import { EmpresasComponent } from './components/admin/empresas/empresas.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { ShowEmpresasComponent } from './components/admin/empresas/show/show.component';
+import { FormEmpresasComponent } from './components/admin/empresas/form-empresas/form-empresas.component';
 
 
 
@@ -52,6 +58,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     RecoveryComponent,
     ResetPasswordComponent,
     ProfileComponent,
+    EmpresaComponent,
+    CentroComponent,
+
 
     //admin
 
@@ -62,6 +71,10 @@ import { ProfileComponent } from './components/profile/profile.component';
     ShowCentrosComponent,
     FormulariosComponent,
     FormFormulariosComponent,
+    EmpresasComponent,
+    ShowEmpresasComponent,
+    FormEmpresasComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,

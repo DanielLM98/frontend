@@ -3,34 +3,32 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Centro } from 'src/app/models/Centro';
 import { User } from 'src/app/models/User';
-import { CentrosService } from 'src/app/services/centros.service';
+import { EmpresasService } from 'src/app/services/empresas.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
-  selector: 'app-showcentros',
+  selector: 'app-showempresas',
   templateUrl: './show.component.html',
   styleUrls: ['./show.component.css']
 })
-export class ShowCentrosComponent implements OnInit {
-  centro!: Centro;
-  idCentro!: number;
+export class ShowEmpresasComponent implements OnInit {
+  empresa!: Centro;
+  idEmpresa!: number;
   usuarios$!: Observable<User[]>; 
   tutores$!: Observable<User[]>;
-  
-  constructor(private usuariosService:UsuariosService ,private centrosService: CentrosService, private route: ActivatedRoute) { }
+  constructor(private usuariosService:UsuariosService,private empresasService: EmpresasService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     if (+this.route.snapshot.paramMap.get('id')! > 0) {
-      this.idCentro = parseInt(this.route.snapshot.paramMap.get('id')!);
+      this.idEmpresa = parseInt(this.route.snapshot.paramMap.get('id')!);
 
-      this.centrosService.fetchById(this.idCentro).subscribe((centro) => {
-        this.centro = centro;
+      this.empresasService.fetchById(this.idEmpresa).subscribe((empresa) => {
+        this.empresa = empresa;
       }, (error) => {
         console.log(error);
       });
-      this.usuarios$=this.centrosService.obtenerAlumnos(this.idCentro)
-      this.tutores$=this.centrosService.fetchTutoresCentro(this.idCentro)
-      this.cargarDatos();
+      this.usuarios$=this.empresasService.fetchAlumnosEmpresa(this.idEmpresa)
+      this.tutores$=this.empresasService.fetchTutoresEmpresa(this.idEmpresa)
       
     }
   }

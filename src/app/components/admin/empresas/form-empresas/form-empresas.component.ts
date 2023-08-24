@@ -1,8 +1,10 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Centro } from 'src/app/models/Centro';
 import { Empresa } from 'src/app/models/Empresa';
+import { CentrosService } from 'src/app/services/centros.service';
 import { EmpresasService } from 'src/app/services/empresas.service';
 
 @Component({
@@ -17,10 +19,12 @@ export class FormEmpresasComponent implements OnInit {
   empresaId!: number;
   Empresa!: Empresa;
   ExisteEmpresa!: boolean;
-  constructor(private empresasService:EmpresasService, private route: ActivatedRoute, private router: Router) { }
+  centros$!: Observable<Centro[]>;
+  constructor(private centrosService:CentrosService ,private empresasService:EmpresasService, private route: ActivatedRoute, private router: Router) { }
 
 
   ngOnInit(): void {
+    console.log(this.route.snapshot.paramMap.get('id'))
     if(+this.route.snapshot.paramMap.get('id')! > 0){
       this.empresaId = +this.route.snapshot.paramMap.get('id')!;
       this.empresasService.fetchById(this.empresaId).pipe().subscribe((empresa) => {
@@ -53,15 +57,15 @@ export class FormEmpresasComponent implements OnInit {
   onSubmit(): void {
     console.log(this.empresasForm.value)
 
-    this.empresasService.create(this.empresasForm.value).subscribe((msg) => console.log(msg));
+    this.empresasService.create(this.empresasForm.value).subscribe((msg) => {console.log(msg);
     this.router.navigate(['/admin/empresas']);
-  }
+  })}
 
   onUpdate(): void {
 
-    this.empresasService.update(this.empresaId,this.empresasForm.value).subscribe((msg) => console.log(msg));
-  }
-
+    this.empresasService.update(this.empresaId,this.empresasForm.value).subscribe((msg) => {console.log(msg);
+      this.router.navigate(['/admin/empresas']);
+    })}
   fetchById(): void {
     this.empresasService.fetchById(this.empresaId).subscribe((empresa) => {
       this.Empresa = empresa as Empresa;

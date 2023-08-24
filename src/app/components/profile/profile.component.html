@@ -11,8 +11,55 @@
             </div>
             <hr>
 
-            <button class="btn btn-primary mx-2" routerLink="/perfil/editar">Editar</button>
-            <button class="btn btn-primary" routerLink="/perfil/cambiar-contrasena">Cambiar Contraseña</button>
+            <button class="btn btn-primary mx-2" (click)="edit()">Editar</button>
+            <button class="btn btn-primary" (click)="cambiarContrasena()">Cambiar Contraseña</button>
+
+            <div class="py-5" style="display: none;" id="changePassword">
+                <form [formGroup]="ChangeForm" (submit)="resetPassword(user.ID)">
+                    <div class="col-lg-6 col-sm-3">
+                        <div class="row">
+                            <mat-form-field>
+                                <mat-label>Contraseña Actual</mat-label> <input type="password" matInput placeholder="Contraseña Actual" formControlName="Actual">
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <mat-form-field>
+                                <mat-label>Nueva Contraseña</mat-label><input type="password" matInput placeholder="Nueva Contraseña" formControlName="Nueva">
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <mat-form-field>
+                                <mat-label>Confirmación</mat-label><input type="password" matInput placeholder="Confirmación" formControlName="Confirmacion">
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <button class="btn btn-primary mx-2" type="submit">Cambiar Contraseña</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="py-5" style="display: none;" id="editPerfil">
+                <form [formGroup]="EditForm" (submit)="editPerfil()">
+                    <div class="col-lg-6 col-sm-3">
+                        <div class="row">
+                            <mat-form-field>
+                                <mat-label>Nombre</mat-label> <input type="text" matInput placeholder="Nombre" formControlName="Nombre">
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <mat-form-field>
+                                <mat-label>Apellido</mat-label><input type="text" matInput placeholder="Apellido" formControlName="Apellido">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="row">
+                            <button class="btn btn-primary mx-2" type="submit">Guardar</button>
+                        </div>
+                        <span>*Los datos que se cambien se verán en el proximo inicio de sesión</span>
+                    </div>
+
+                </form>
+            </div>
         </div>
     </div>
-</div>

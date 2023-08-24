@@ -4,40 +4,51 @@
             <button mat-raised-button class="btn-add" routerLink="/admin/formularios/create"> + Crear
                 formulario</button>
         </div>
-        <table class="w-full whitespace-no-wrap">
-            <thead>
-                <tr
-                    class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+        <div class="w-full overflow-x-auto py-5">
 
-                    <th class="px-4 py-3">Nº</th>
-                    <th class="px-4 py-3">Nombre</th>
-                    <th class="px-4 py-3">Descripción</th>
-                    <th class="px-4 py-3">Rol</th>
-                    <!--<th class="px-4 py-3">Archivo pdf</th>-->
-                    <th class="px-4 py-3">Acciones</th>
-                </tr>
-            </thead>
-            <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                <tr *ngFor="let formulario of formularios$ | async; let i = index" class="text-gray-700 dark:text-gray-400">
-                    
-                    <td class="px-4 py-3">{{ i + 1 }}</td>
-                    <td class="px-4 py-3">{{ formulario.Nombre }}</td>
-                    <td class="px-4 py-3">{{ formulario.Descripcion }}</td>
-                    <td class="px-4 py-3">{{ formulario.Rol }}</td>
+            <table class="w-full whitespace-no-wrap w-100">
+                <thead>
+                    <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
 
-                    <td class="px-4 py-3">
-                        <a routerLink="/admin/formularios/{{formulario.ID}}/edit">
-                            <button mat-icon-button>
+                        <th class="px-4 py-3">Nº</th>
+                        <th class="px-4 py-3">Nombre</th>
+                        <th class="px-4 py-3">Descripción</th>
+                        <th class="px-4 py-3">Rol</th>
+                        <!--<th class="px-4 py-3">Archivo pdf</th>-->
+                        <th class="px-4 py-3">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                    <tr *ngFor="let formulario of formularios$ | async; let i = index" class="text-gray-700 dark:text-gray-400">
+
+                        <td class="px-4 py-3">{{ i + 1 }}</td>
+                        <td class="px-4 py-3">{{ formulario.Nombre }}</td>
+                        <td class="px-4 py-3">{{ formulario.Descripcion }}</td>
+                        <td class="px-4 py-3">{{ formulario.Rol }}</td>
+
+                        <td class="px-4 py-3">
+                            <a routerLink="/admin/formularios/{{formulario.ID}}/edit">
+                                <button mat-icon-button>
                                 <mat-icon color="primary">edit</mat-icon>
                             </button>
-                        </a>
-                        
-                        <button mat-icon-button (click)="delete(formulario.ID)">
+                            </a>
+
+                            <button mat-icon-button (click)="delete(formulario.ID)">
                             <mat-icon color="warn">delete</mat-icon>
                         </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="pagination-container">
+                <button mat-icon-button (click)="prevPage()" [disabled]="page === 1">
+              <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+                <span class="page-info">{{ page }} de {{ totalPages }}</span>
+                <button mat-icon-button (click)="nextPage()" [disabled]="page === totalPages">
+              <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+            </div>
+        </div>
     </div>
 </div>
