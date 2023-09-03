@@ -29,11 +29,7 @@
                     <th class="px-4 py-3">Nombre</th>
                     <th class="px-4 py-3">Direccion</th>
                     <th class="px-4 py-3">Correo Electronico</th>
-                    <th class="px-4 py-3">Telefono</th>
-<<<<<<< HEAD
-=======
-                    <th class="px-4 py-3">Acciones</th>
->>>>>>> main
+
                 </tr>
             </thead>
             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -43,27 +39,10 @@
                     <td class="px-4 py-3">{{ usuario.Nombre }}</td>
                     <td class="px-4 py-3">{{ usuario.Apellido }}</td>
                     <td class="px-4 py-3">{{ usuario.CorreoElectronico }}</td>
-                    <td class="px-4 py-3">{{ usuario.TipoUsuario }}</td>
 
 
 
 
-<<<<<<< HEAD
-                    
-=======
-                    <td class="px-4 py-3">
-
-                        <a routerLink="/admin/usuarios/{{usuario.ID}}/edit">
-                            <button mat-icon-button>
-                        <mat-icon color="primary">edit</mat-icon>
-                    </button>
-                        </a>
-                        <a (click)="eliminarUsuario(usuario.ID)">
-                            <button mat-icon-button>
-                        <mat-icon color="warn">delete</mat-icon>
-                    </button>
-                        </a>
->>>>>>> main
                 </tr>
             </tbody>
         </table>
