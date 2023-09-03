@@ -75,4 +75,18 @@ export class FormulariosComponent implements OnInit{
 
     }
   }
+
+  eliminarFormulario(id: number): void {
+    if (confirm("¿Está seguro de que desea eliminar este formulario?")) {
+      this.formulariosService.delete(id).subscribe(
+        (data) => {
+          console.log(data);
+          this.cargarDatos();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+      }
+    }
 }

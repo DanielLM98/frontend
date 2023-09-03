@@ -41,7 +41,7 @@
                             <mat-icon color="primary">edit</mat-icon>
                         </button>
                         </a>
-                        <a routerLink="/admin/centros/{{centro.ID}}/delete">
+                        <a (click)="eliminarCentro(centro.ID)">
                             <button mat-icon-button>
                             <mat-icon color="warn">delete</mat-icon>
                         </button>

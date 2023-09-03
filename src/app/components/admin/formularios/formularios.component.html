@@ -32,10 +32,12 @@
                                 <mat-icon color="primary">edit</mat-icon>
                             </button>
                             </a>
+                            <a (click)="eliminarFormulario(formulario.ID)">
+                                <button mat-icon-button>
+                                <mat-icon color="warn">delete</mat-icon>
+                            </button>
+                            </a>
 
-                            <button mat-icon-button (click)="delete(formulario.ID)">
-                            <mat-icon color="warn">delete</mat-icon>
-                        </button>
                         </td>
                     </tr>
                 </tbody>

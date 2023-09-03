@@ -62,8 +62,6 @@ export class FormEmpresasComponent implements OnInit {
       correoElectronico: new FormControl("", [Validators.required, Validators.email]),
       telefono: new FormControl("", [Validators.required, Validators.minLength(8)]),
       centro: new FormControl("", [Validators.required]),
-
-
     });
   }
 

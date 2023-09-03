@@ -29,6 +29,7 @@ export class ShowEmpresasComponent implements OnInit {
       });
       this.usuarios$=this.empresasService.fetchAlumnosEmpresa(this.idEmpresa)
       this.tutores$=this.empresasService.fetchTutoresEmpresa(this.idEmpresa)
+      this.cargarDatos();
       
     }
   }
