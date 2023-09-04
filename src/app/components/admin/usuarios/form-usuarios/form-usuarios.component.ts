@@ -64,7 +64,7 @@ export class FormUsuariosComponent {
     if (this.cookieService.get("user") != "") {
       if (JSON.parse(this.cookieService.get("user")).TipoUsuario == "Administrador") {
         this.userAdmin = true;
-      } else if (JSON.parse(this.cookieService.get("user")).TipoUsuario == "adminCentro") {
+      } else if (JSON.parse(this.cookieService.get("user")).TipoUsuario == "AdministradorCentro") {
         this.userAdminCentro = true;
       }
     }

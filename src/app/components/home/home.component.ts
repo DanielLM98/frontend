@@ -38,6 +38,8 @@ export class HomeComponent implements OnInit {
 
     if (rol === "Administrador") {
       this.router.navigate(['admin/usuarios']);
+    }else if(rol === "AdministradorCentro"){
+      this.router.navigate(['admin/centros']);
     }
     else {
       this.formularios$ = this.formulariosService.getFormulariosbyRol(rol);
