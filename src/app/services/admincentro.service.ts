@@ -9,7 +9,7 @@ import { Observable, catchError } from 'rxjs';
 })
 export class AdmincentroService {
 
-  private url = "http://localhost:3000/admincentros";
+  private url = "http://34.242.107.233:3000/admincentros";
   private httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
   constructor(private http: HttpClient, private errorHandlerService: ErrorHandlerService) { }
 

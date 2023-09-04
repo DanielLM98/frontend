@@ -17,7 +17,7 @@ import jwt_decode from "jwt-decode";
 
 
 export class AuthService implements OnInit {
-  private url = "http://localhost:3000/auth";
+  private url = "http://34.242.107.233:3000/auth";
 
   isUserLoggedIn$ = new BehaviorSubject<boolean>(false);
   userId!: Pick<User, "ID">;

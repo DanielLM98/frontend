@@ -11,7 +11,7 @@ import { User } from '../models/User';
 })
 export class EmpresasService {
 
-  private url = "http://localhost:3000/empresas";
+  private url = "http://34.242.107.233:3000/empresas";
   private httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
   constructor(private http: HttpClient, private errorHandlerService: ErrorHandlerService) { }
   
