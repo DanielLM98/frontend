@@ -75,7 +75,6 @@ export class FormulariosComponent implements OnInit{
 
     }
   }
-<<<<<<< HEAD
 
   eliminarFormulario(id: number): void {
     if (confirm("¿Está seguro de que desea eliminar este formulario?")) {
@@ -90,6 +89,4 @@ export class FormulariosComponent implements OnInit{
       );
       }
     }
-=======
->>>>>>> main
 }
